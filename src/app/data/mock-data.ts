@@ -9,8 +9,8 @@ export let mockProjects: Project[] = [
     id: 1,
     title: "Music project",
     description: "Description of music project",
-    theme: "",
-    industry: "",
+    theme: "rock music",
+    industry: "music",
     skills: [
       { name: "piano"},
       { name: "triangle"}],
@@ -23,8 +23,8 @@ export let mockProjects: Project[] = [
     id: 2,
     title: "Programming project",
     description: "Description of music project",
-    theme: "",
-    industry: "",
+    theme: "computer store",
+    industry: "web development",
     skills: [
       { name: "C#"},
       { name: "JavaScript"}],
@@ -37,8 +37,8 @@ export let mockProjects: Project[] = [
     id: 3,
     title: "Film project",
     description: "Description of film project",
-    theme: "",
-    industry: "",
+    theme: "horror movie",
+    industry: "movie",
     skills: [
       { name: "video editing"},
       { name: "directing"}],

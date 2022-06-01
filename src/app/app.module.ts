@@ -10,7 +10,7 @@ import { CatalogueComponent } from './components/catalogue/catalogue.component';
   declarations: [
     AppComponent,
     MainPage,
-    CatalogueComponent
+    CatalogueComponent,
   ],
   imports: [
     BrowserModule,
