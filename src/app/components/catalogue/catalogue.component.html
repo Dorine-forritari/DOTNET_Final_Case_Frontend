@@ -1,0 +1,16 @@
+<ul class="projects-list">
+  <li *ngFor="let project of projects">
+    <div class="project-card">
+      <h2 class="project-title">{{ project.title }}</h2>
+      <p>Project owner:</p>
+      <p>Field/ industry: {{ project.industry }}</p>
+      <p>Theme/ purpose: {{ project.theme }} </p>
+      <h3>Required skills:</h3>
+      <ul>
+        <li *ngFor="let skill of project.skills">
+          <p>{{ skill.name }}</p>
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>
