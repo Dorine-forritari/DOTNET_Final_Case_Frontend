@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MainPage } from './pages/main/main.page';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ProfilePage } from './pages/profile/profile.page';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ProfilePage } from './pages/profile/profile.page';
     MainPage,
     CatalogueComponent,
     ProfilePage,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
