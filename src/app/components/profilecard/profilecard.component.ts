@@ -12,7 +12,7 @@ export class ProfilecardComponent implements OnInit {
 
   //TODO!!! logged in user should not be nr 0 in mockuser array
   @Input() loggedInUser: User = mockUsers[0];
-  @Input() skills: Skill[] = mockSkills;
+  allSkills: Skill[] = mockSkills;
 
   constructor() { }
 
