@@ -10,13 +10,18 @@ const routes: Routes = [
     redirectTo: '/main',
   },
   {
-    path: 'main',
-    component: MainPage,
+    path: "main",
+    component: MainPage
+  },
+  { 
+    path: "search/:searchInput",
+    component: MainPage
   },
   {
     path: 'catalogue',
     component: CataloguePage,
   },
+
 ];
 
 @NgModule({
