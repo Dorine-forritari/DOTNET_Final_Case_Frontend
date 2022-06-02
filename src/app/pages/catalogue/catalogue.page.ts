@@ -8,7 +8,7 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   styleUrls: ['./catalogue.page.scss'],
 })
 export class CataloguePage implements OnInit {
-  catalogue: Project[] = [];
+  projects: Project[] = [];
 
   constructor(private catalogueService: CatalogueService) {}
 
@@ -19,7 +19,7 @@ export class CataloguePage implements OnInit {
   public fetchCatalogue(): void {
     this.catalogueService.catalogue().subscribe({
       next: (response: any) => {
-        this.catalogue = response.map((project: Project) => {
+        this.projects = response.map((project: Project) => {
           return {
             ...project,
           };

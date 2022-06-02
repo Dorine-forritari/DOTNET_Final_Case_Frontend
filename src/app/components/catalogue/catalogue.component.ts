@@ -8,11 +8,9 @@ import { Project } from 'src/app/models/project.model';
 })
 export class CatalogueComponent implements OnInit {
   // @Input() projects: Project[] = mockProjects;
-  @Input() catalogue: Project[] = [];
   @Input() projects: Project[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
