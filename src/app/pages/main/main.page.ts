@@ -15,6 +15,7 @@ export class MainPage implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // Filter projects based on search input in params
     this.route.params.subscribe(params => {
       if (params['searchInput']) {
         this.projects = mockProjects.filter(project => project.title.toLowerCase().includes(params['searchInput'].toLowerCase()));

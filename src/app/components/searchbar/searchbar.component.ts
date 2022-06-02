@@ -19,6 +19,7 @@ export class SearchbarComponent implements OnInit {
     })
   }
 
+  // Change url based on search input from user
   search(): void{
     if (this.searchInput) {
       this.router.navigateByUrl('/search/' + this.searchInput);
