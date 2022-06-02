@@ -9,6 +9,6 @@ export interface User {
     portfolio: string;
     description: string;
     hidden: boolean;
-    skills: Skill[];
-    projects: Project[];
+    skills: number[];
+    projects: number[];
   }
