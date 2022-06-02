@@ -1,6 +1,6 @@
-import { Project } from './../../models/project.model';
 import { Component, OnInit } from '@angular/core';
-import { CatalogueService } from 'src/app/services/catalogue.service';
+import { mockProjects } from 'src/app/data/mock-data';
+import { Project } from 'src/app/models/project.model';
 
 @Component({
   selector: 'app-main',
@@ -8,27 +8,9 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  catalogue: Project[] = [];
+  catalogue: Project[] = mockProjects;
 
-  constructor(private catalogueService: CatalogueService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.fetchCatalogue();
-  }
-
-  public fetchCatalogue(): void {
-    this.catalogueService.catalogue().subscribe({
-      next: (response: any) => {
-        console.log(response);
-        this.catalogue = response.map((item: Project) => {
-          console.log(item);
-          return {
-            ...item,
-          };
-        });
-      },
-      error: () => {},
-      complete: () => {},
-    });
-  }
+  ngOnInit(): void {}
 }

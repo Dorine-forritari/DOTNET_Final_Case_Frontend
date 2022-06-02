@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-// import { mockProjects } from 'src/app/data/mock-data';
 import { Project } from 'src/app/models/project.model';
-
+// import { mockProjects } from 'src/app/data/mock-data';
 @Component({
   selector: 'app-catalogue',
   templateUrl: './catalogue.component.html',

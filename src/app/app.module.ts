@@ -8,6 +8,7 @@ import { MainPage } from './pages/main/main.page';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProjectIconComponent } from './components/catalogue/project-icon/project-icon.component';
+import { CataloguePage } from './pages/catalogue/catalogue.page';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ProjectIconComponent } from './components/catalogue/project-icon/projec
     CatalogueComponent,
     NavbarComponent,
     ProjectIconComponent,
+    CataloguePage,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
