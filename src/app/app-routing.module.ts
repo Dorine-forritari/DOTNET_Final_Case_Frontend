@@ -4,18 +4,18 @@ import { MainPage } from './pages/main/main.page';
 
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "/main"
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/main',
   },
   {
-    path: "main",
-    component: MainPage
-  }
+    path: 'main',
+    component: MainPage,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
