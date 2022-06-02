@@ -7,6 +7,7 @@ import { MainPage } from './pages/main/main.page';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
     MainPage,
     CatalogueComponent,
     SearchbarComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
