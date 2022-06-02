@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-searchbar',
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SearchbarComponent implements OnInit {
 
   searchInput: string = "";
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -17,6 +17,12 @@ export class SearchbarComponent implements OnInit {
         this.searchInput = params['searchInput'];
       }
     })
+  }
+
+  search(): void{
+    if (this.searchInput) {
+      this.router.navigateByUrl('/search/' + this.searchInput);
+    }
   }
 
 }
