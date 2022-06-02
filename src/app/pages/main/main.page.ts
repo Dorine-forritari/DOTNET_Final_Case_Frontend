@@ -6,10 +6,9 @@ import { Project } from 'src/app/models/project.model';
 @Component({
   selector: 'app-main',
   templateUrl: './main.page.html',
-  styleUrls: ['./main.page.scss']
+  styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  
   projects: Project[] = [];
 
   constructor(private route: ActivatedRoute) { }
@@ -24,5 +23,4 @@ export class MainPage implements OnInit {
       }
     })
   }
-
 }
