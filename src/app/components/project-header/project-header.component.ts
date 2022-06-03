@@ -1,12 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-project-icon',
-  templateUrl: './project-icon.component.html',
-  styleUrls: ['./project-icon.component.scss'],
+  selector: 'app-project-header',
+  templateUrl: './project-header.component.html',
+  styleUrls: ['./project-header.component.scss'],
 })
-export class ProjectIconComponent implements OnInit {
+export class ProjectHeaderComponent implements OnInit {
+  @Input() title: string = '';
   @Input() industry: string | undefined;
+
   icon: string | undefined;
 
   constructor() {}

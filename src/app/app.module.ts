@@ -11,10 +11,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfilecardComponent } from './components/profilecard/profilecard.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FormsModule } from '@angular/forms';
-import { ProjectIconComponent } from './components/catalogue/project-icon/project-icon.component';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
+import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 
 @NgModule({
   declarations: [
@@ -25,17 +25,12 @@ import { ProjectPage } from './pages/project/project.page';
     NavbarComponent,
     ProfilecardComponent,
     SearchbarComponent,
-    ProjectIconComponent,
     CataloguePage,
     ProjectComponent,
     ProjectPage,
+    ProjectHeaderComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -7,7 +7,6 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./catalogue.component.scss'],
 })
 export class CatalogueComponent implements OnInit {
-  // @Input() projects: Project[] = mockProjects;
   @Input() projects: Project[] = [];
 
   constructor() {}
