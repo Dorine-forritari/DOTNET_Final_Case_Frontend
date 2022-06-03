@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProjectIconComponent } from './components/catalogue/project-icon/project-icon.component';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
+import { ProjectComponent } from './components/project/project.component';
+import { ProjectPage } from './pages/project/project.page';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { CataloguePage } from './pages/catalogue/catalogue.page';
     NavbarComponent,
     ProjectIconComponent,
     CataloguePage,
+    ProjectComponent,
+    ProjectPage,
   ],
   imports: [
     BrowserModule,
