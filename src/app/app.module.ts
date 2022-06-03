@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,10 @@ import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ProfilePage } from './pages/profile/profile.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfilecardComponent } from './components/profilecard/profilecard.component';
+import { SearchbarComponent } from './components/searchbar/searchbar.component';
+import { FormsModule } from '@angular/forms';
+import { ProjectIconComponent } from './components/catalogue/project-icon/project-icon.component';
+import { CataloguePage } from './pages/catalogue/catalogue.page';
 
 @NgModule({
   declarations: [
@@ -17,12 +22,17 @@ import { ProfilecardComponent } from './components/profilecard/profilecard.compo
     ProfilePage,
     NavbarComponent,
     ProfilecardComponent,
+    SearchbarComponent,
+    ProjectIconComponent,
+    CataloguePage,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -2,7 +2,7 @@
   <li *ngFor="let project of projects">
     <div class="card">
       <div class="card-header">
-        <!-- icon for the field/industry?? -->
+        <app-project-icon [industry]="project.industry"></app-project-icon>
         <h4 class="project-title">{{ project.title }}</h4>
       </div>
       <div class="project-info-container">

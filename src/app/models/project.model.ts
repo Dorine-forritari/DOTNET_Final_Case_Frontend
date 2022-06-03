@@ -1,4 +1,4 @@
-import { Skill } from "./skill.model";
+import { Skill } from './skill.model';
 
 export interface Project {
   id: number;
@@ -11,4 +11,8 @@ export interface Project {
   screen: string;
   photo: string;
   progress: string;
+}
+
+export interface ProjectResponse {
+  project: Project;
 }

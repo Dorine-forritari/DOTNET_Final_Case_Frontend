@@ -11,7 +11,7 @@ export let mockProjects: Project[] = [
     title: "Music project",
     description: "Description of music project",
     theme: "rock music",
-    industry: "music",
+    industry: "Music",
     skills: [
       { id: 1,
         name: "piano"},
@@ -27,7 +27,7 @@ export let mockProjects: Project[] = [
     title: "Programming project",
     description: "Description of music project",
     theme: "computer store",
-    industry: "web development",
+    industry: "Web development",
     skills: [
       { id: 3,
         name: "C#"},
@@ -43,7 +43,7 @@ export let mockProjects: Project[] = [
     title: "Film project",
     description: "Description of film project",
     theme: "horror movie",
-    industry: "movie",
+    industry: "Movie",
     skills: [
       { id: 5,
         name: "video editing"},
@@ -53,6 +53,22 @@ export let mockProjects: Project[] = [
     screen: "",
     photo: "",
     progress: "",
+  },
+  {
+    id: 4,
+    title: 'Game project',
+    description: 'Description of game project',
+    theme: 'Strategy, RPG',
+    industry: 'Game development',
+    skills: [
+      { id: 7,
+        name: '3D character modelling' }, 
+      { id: 8,
+        name: 'Bug fixer' }],
+    link: '',
+    screen: '',
+    photo: '',
+    progress: '',
   },
 ];
 

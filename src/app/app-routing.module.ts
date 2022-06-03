@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPage } from './pages/main/main.page';
 import { ProfilePage } from './pages/profile/profile.page';
+import { CataloguePage } from './pages/catalogue/catalogue.page';
 
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "/main"
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/main',
   },
   {
     path: "main",
@@ -16,11 +17,20 @@ const routes: Routes = [
   {
     path: "profile",
     component: ProfilePage
-  }
+  },
+  { 
+    path: "search/:searchInput",
+    component: MainPage
+  },
+  {
+    path: 'catalogue',
+    component: CataloguePage,
+  },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
