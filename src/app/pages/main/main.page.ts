@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { mockProjects } from 'src/app/data/mock-data';
 import { Project } from 'src/app/models/project.model';
 
@@ -11,7 +10,7 @@ import { Project } from 'src/app/models/project.model';
 export class MainPage implements OnInit {
   projects: Project[] = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
     // Load projects
