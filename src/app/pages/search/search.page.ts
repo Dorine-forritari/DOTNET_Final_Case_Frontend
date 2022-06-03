@@ -18,7 +18,11 @@ export class SearchPage implements OnInit {
     // Filter projects based on search input in params
     this.route.params.subscribe(params => {
       if (params['searchInput']) {
-        this.projects = mockProjects.filter(project => project.title.toLowerCase().includes(params['searchInput'].toLowerCase()));
+        this.projects = mockProjects.filter(function(p) {
+          return (p.title.toLowerCase().includes(params['searchInput'].toLowerCase()) ||
+                  p.theme.toLowerCase().includes(params['searchInput'].toLowerCase()) ||
+                  p.description.toLowerCase().includes(params['searchInput'].toLowerCase()));
+        });
       } else {
         this.projects = mockProjects;
       }
