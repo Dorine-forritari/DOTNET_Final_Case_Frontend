@@ -59,7 +59,7 @@ export let mockProjects: Project[] = [
 export let mockUsers: User[] = [
   {
     id: 1,
-    name: "pim",
+    name: "Pim",
     password: "password",
     email: "pim@gmail.com",
     portfolio: "this is my portfolio",
@@ -70,7 +70,7 @@ export let mockUsers: User[] = [
   },
   {
     id: 2,
-    name: "leroy",
+    name: "Leroy",
     password: "password",
     email: "leroy@gmail.com",
     portfolio: "this is my portfolio",
@@ -81,7 +81,7 @@ export let mockUsers: User[] = [
   },
   {
     id: 3,
-    name: "victor",
+    name: "Victor",
     password: "password",
     email: "victor@gmail.com",
     portfolio: "this is my portfolio",
@@ -92,7 +92,7 @@ export let mockUsers: User[] = [
   },
   {
     id: 4,
-    name: "dorine",
+    name: "Dorine",
     password: "password",
     email: "dorine@gmail.com",
     portfolio: "this is my portfolio",
