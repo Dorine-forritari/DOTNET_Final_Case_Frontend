@@ -13,6 +13,7 @@ import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FormsModule } from '@angular/forms';
 import { ProjectIconComponent } from './components/catalogue/project-icon/project-icon.component';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
+import { SearchPage } from './pages/search/search.page';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CataloguePage } from './pages/catalogue/catalogue.page';
     SearchbarComponent,
     ProjectIconComponent,
     CataloguePage,
+    SearchPage,
   ],
   imports: [
     BrowserModule,
