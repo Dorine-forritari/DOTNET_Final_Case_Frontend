@@ -17,6 +17,10 @@ export class SearchPage implements OnInit {
   // Store projects from catalogue in variable filteredProjects
   // This variable can be used to filter projects by search term
   filteredProjects: Project[] = this.projects;
+
+  // If no projects are found, searchPageMessage is set to noProjectsFound
+  searchPageMessage: string = "";
+  noProjectsFound: string = "No projects found. Please try again with another search term.";
   
   constructor(private catalogueService: CatalogueService, private route: ActivatedRoute) { }
 
@@ -31,6 +35,11 @@ export class SearchPage implements OnInit {
                   p.theme.toLowerCase().includes(params['searchInput'].toLowerCase()) ||
                   p.description.toLowerCase().includes(params['searchInput'].toLowerCase()));
         });
+        if (this.filteredProjects.length === 0) {
+          this.searchPageMessage = this.noProjectsFound;
+        } else {
+          this.searchPageMessage = "";
+        }
       } 
     })
   }
