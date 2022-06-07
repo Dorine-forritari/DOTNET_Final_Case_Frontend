@@ -8,25 +8,14 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   styleUrls: ['./catalogue.page.scss'],
 })
 export class CataloguePage implements OnInit {
-  projects: Project[] = [];
+  
+  get projects(): Project[] {
+    return this.catalogueService.projects;
+  }
 
   constructor(private catalogueService: CatalogueService) {}
 
   ngOnInit(): void {
-    this.fetchCatalogue();
-  }
-
-  public fetchCatalogue(): void {
-    this.catalogueService.catalogue().subscribe({
-      next: (response: any) => {
-        this.projects = response.map((project: Project) => {
-          return {
-            ...project,
-          };
-        });
-      },
-      error: () => {},
-      complete: () => {},
-    });
+    this.catalogueService.fetchCatalogue();
   }
 }

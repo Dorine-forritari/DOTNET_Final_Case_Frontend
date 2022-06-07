@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { mockProjects } from 'src/app/data/mock-data';
 import { Project } from 'src/app/models/project.model';
+import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
   selector: 'app-main',
@@ -8,12 +9,15 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  projects: Project[] = [];
+  
+  get projects(): Project[] {
+    return this.catalogueService.projects;
+  }
 
-  constructor() { }
+  constructor(private catalogueService: CatalogueService) { }
 
   ngOnInit(): void {
     // Load projects
-    this.projects = mockProjects;
+    this.catalogueService.fetchCatalogue();
   }
 }
