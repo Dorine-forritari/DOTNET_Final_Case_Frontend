@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProjectResponse } from '../models/project.model';
+import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
 
 const { apiUrl } = environment;
@@ -9,6 +9,12 @@ const { apiUrl } = environment;
   providedIn: 'root',
 })
 export class CatalogueService {
+  private _projects: Project[] = [];
+
+  get projects(): Project[] {
+    return this._projects;
+  }
+
   constructor(private http: HttpClient) {}
 
   public catalogue() {
@@ -16,25 +22,14 @@ export class CatalogueService {
     return this.http.get<ProjectResponse[]>(apiUrl);
   }
 
-  public getSingleProject(id: number) {
-    this.http.get(apiUrl + '/' + id).subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: () => {},
-      complete: () => {},
-    });
-  }
-
-  public getAllProjects() {
-    this.http.get<ProjectResponse[]>(apiUrl).subscribe({
-      next: (response: ProjectResponse[]) => {
-        console.log(response);
-        let projects = response.map((element) => {
-          console.log(element);
-          return element;
+  public fetchCatalogue(): void {
+    this.catalogue().subscribe({
+      next: (response: any) => {
+        this._projects = response.map((project: Project) => {
+          return {
+            ...project,
+          };
         });
-        return projects;
       },
       error: () => {},
       complete: () => {},

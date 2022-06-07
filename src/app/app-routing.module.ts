@@ -1,11 +1,10 @@
-import { ProjectComponent } from './components/project/project.component';
-import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ProjectPage } from './pages/project/project.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPage } from './pages/main/main.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
+import { SearchPage } from './pages/search/search.page';
 
 const routes: Routes = [
   {
@@ -23,7 +22,12 @@ const routes: Routes = [
   },
   {
     path: 'search/:searchInput',
-    component: MainPage,
+    component: SearchPage,
+  },
+  {
+    path: 'search',
+    pathMatch: 'full',
+    redirectTo: '/main',
   },
   {
     path: 'catalogue',

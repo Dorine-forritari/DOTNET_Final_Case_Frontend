@@ -15,6 +15,7 @@ import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
+import { SearchPage } from './pages/search/search.page';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProjectHeaderComponent } from './components/project-header/project-head
     ProjectComponent,
     ProjectPage,
     ProjectHeaderComponent,
+    SearchPage,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
