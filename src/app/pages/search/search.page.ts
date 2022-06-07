@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { mockProjects } from 'src/app/data/mock-data';
 import { Project } from 'src/app/models/project.model';
+import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
   selector: 'app-search',
@@ -10,22 +10,28 @@ import { Project } from 'src/app/models/project.model';
 })
 export class SearchPage implements OnInit {
 
-  projects: Project[] = [];
+  get projects(): Project[] {
+    return this.catalogueService.projects;
+  }
+
+  // Store projects from catalogue in variable filteredProjects
+  // This variable can be used to filter projects by search term
+  filteredProjects: Project[] = this.projects;
   
-  constructor(private route: ActivatedRoute) { }
+  constructor(private catalogueService: CatalogueService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // Fetch all projects from API
+    this.catalogueService.fetchCatalogue();
     // Filter projects based on search input in params
     this.route.params.subscribe(params => {
       if (params['searchInput']) {
-        this.projects = mockProjects.filter(function(p) {
+        this.filteredProjects = this.projects.filter(function(p) {
           return (p.title.toLowerCase().includes(params['searchInput'].toLowerCase()) ||
                   p.theme.toLowerCase().includes(params['searchInput'].toLowerCase()) ||
                   p.description.toLowerCase().includes(params['searchInput'].toLowerCase()));
         });
-      } else {
-        this.projects = mockProjects;
-      }
+      } 
     })
   }
 }
