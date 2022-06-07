@@ -1,6 +1,6 @@
 <ul class="projects-list">
   <li *ngFor="let project of projects">
-    <div class="card" [routerLink]="'/project'">
+    <div class="card" (click)="goToProject(project)">
       <app-project-header
         [title]="project.title"
         [industry]="project.industry"

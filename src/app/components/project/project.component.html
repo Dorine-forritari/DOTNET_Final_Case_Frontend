@@ -3,7 +3,33 @@
     [title]="title"
     [industry]="industry"
   ></app-project-header>
-  <div>
-    <h1>Details</h1>
+  <!-- Project details -->
+  <div class="project-info-container">
+    <div class="project-info">
+      <p>Project owner:</p>
+      <p>Field / industry: {{ industry }}</p>
+      <p>Theme / purpose: {{ theme }}</p>
+    </div>
+    <div class="project-skills">
+      <h5>Required skills:</h5>
+      <ul>
+        <li *ngFor="let skill of skills">
+          <p class="skills-item">{{ skill.name }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <hr class="rounded" />
+  <!-- Project screen/photos/progress -->
+  <div class="project-progress">
+    <h5>Progress</h5>
+    <!-- Some progress visualization (radial chart?) -->
+  </div>
+  <div class="project-images">
+    <h5>Screen</h5>
+    <h5>Photos</h5>
+  </div>
+  <div class="project-chat">
+    <h5>Chat</h5>
   </div>
 </div>

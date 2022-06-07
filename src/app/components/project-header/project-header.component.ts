@@ -14,13 +14,14 @@ export class ProjectHeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    if (this.industry === 'Web development') {
+    this.industry = this.industry?.toLowerCase();
+    if (this.industry === 'web development') {
       this.industry = 'globe';
-    } else if (this.industry === 'Music') {
+    } else if (this.industry === 'music') {
       this.industry = 'music-note-beamed';
-    } else if (this.industry === 'Movie') {
+    } else if (this.industry === 'movie') {
       this.industry = 'camera-reels';
-    } else if (this.industry === 'Game development') {
+    } else if (this.industry === 'game development') {
       this.industry = 'joystick';
     } else {
       this.industry = 'file-earmark';

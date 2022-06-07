@@ -15,4 +15,29 @@ export class CatalogueService {
     // Test URL
     return this.http.get<ProjectResponse[]>(apiUrl);
   }
+
+  public getSingleProject(id: number) {
+    this.http.get(apiUrl + '/' + id).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: () => {},
+      complete: () => {},
+    });
+  }
+
+  public getAllProjects() {
+    this.http.get<ProjectResponse[]>(apiUrl).subscribe({
+      next: (response: ProjectResponse[]) => {
+        console.log(response);
+        let projects = response.map((element) => {
+          console.log(element);
+          return element;
+        });
+        return projects;
+      },
+      error: () => {},
+      complete: () => {},
+    });
+  }
 }
