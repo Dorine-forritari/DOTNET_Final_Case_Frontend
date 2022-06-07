@@ -7,9 +7,9 @@ import { SearchPage } from './pages/search/search.page';
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/main',
+    path: "",
+    pathMatch: "full",
+    redirectTo: "/main",
   },
   {
     path: "main",
@@ -24,7 +24,12 @@ const routes: Routes = [
     component: SearchPage
   },
   {
-    path: 'catalogue',
+    path: "search",
+    pathMatch: "full",
+    redirectTo: "/main"
+  },
+  {
+    path: "catalogue",
     component: CataloguePage,
   },
 
