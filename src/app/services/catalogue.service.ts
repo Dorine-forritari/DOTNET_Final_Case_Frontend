@@ -17,17 +17,9 @@ export class CatalogueService {
 
   constructor(private http: HttpClient) {}
 
-  public catalogue(projectId?: number) {
-    if (projectId === undefined) {
-      return this.http.get<ProjectResponse[]>(apiUrl);
-    } else {
-      return this.http.get<ProjectResponse[]>(apiUrl + '/' + projectId);
-    }
-  }
-
   // Fetch whole catalogue
   public fetchCatalogue(): void {
-    this.catalogue().subscribe({
+    this.http.get<ProjectResponse[]>(apiUrl).subscribe({
       next: (response: any) => {
         this._projects = response.map((project: Project) => {
           return {
@@ -42,7 +34,7 @@ export class CatalogueService {
 
   // Fetch single project based on ID
   public fetchProject(projectId: number): void {
-    this.catalogue(projectId).subscribe({
+    this.http.get<ProjectResponse[]>(apiUrl + '/' + projectId).subscribe({
       next: (response) => {
         console.log(response);
       },
