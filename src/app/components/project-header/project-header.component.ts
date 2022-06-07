@@ -27,4 +27,6 @@ export class ProjectHeaderComponent implements OnInit {
       this.industry = 'file-earmark';
     }
   }
+
+  // joinProject(): void {}
 }

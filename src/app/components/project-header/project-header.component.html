@@ -10,6 +10,72 @@
   </div>
   <!-- only show if user is logged in -->
   <div>
-    <button class="btn btn-primary btn-sm">Join project</button>
+    <button
+      type="button"
+      class="btn btn-primary btn-sm"
+      data-bs-toggle="modal"
+      data-bs-target="#joinProjectModal"
+    >
+      Join project
+    </button>
+  </div>
+</div>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="joinProjectModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="joinProjectModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- TODO: The current project title -->
+        <h5 class="modal-title" id="joinProjectModalLabel">
+          Want to join "{{ title }}"?
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <p style="margin: 0">
+            This information will be shared with the project owner(s):
+          </p>
+          <ul>
+            <li>Username</li>
+            <li>Email</li>
+            <li>Skills</li>
+          </ul>
+        </div>
+        <div class="mb-3">
+          <label for="motivationText" class="form-label"
+            >Write a short motivation:
+          </label>
+          <textarea
+            class="form-control"
+            id="motivationText"
+            rows="3"
+          ></textarea>
+        </div>
+        <p style="margin: 0">Please accept the terms and conditions</p>
+        <!-- checkbox -->
+        <input type="checkbox" id="terms" name="terms" value="Terms" />
+        <!-- <label for="terms">Terms and conditions</label><br /> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary">Join project</button>
+      </div>
+    </div>
   </div>
 </div>

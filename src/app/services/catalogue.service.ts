@@ -17,11 +17,15 @@ export class CatalogueService {
 
   constructor(private http: HttpClient) {}
 
-  public catalogue() {
-    // Test URL
-    return this.http.get<ProjectResponse[]>(apiUrl);
+  public catalogue(projectId?: number) {
+    if (projectId === undefined) {
+      return this.http.get<ProjectResponse[]>(apiUrl);
+    } else {
+      return this.http.get<ProjectResponse[]>(apiUrl + '/' + projectId);
+    }
   }
 
+  // Fetch whole catalogue
   public fetchCatalogue(): void {
     this.catalogue().subscribe({
       next: (response: any) => {
@@ -30,6 +34,17 @@ export class CatalogueService {
             ...project,
           };
         });
+      },
+      error: () => {},
+      complete: () => {},
+    });
+  }
+
+  // Fetch single project based on ID
+  public fetchProject(projectId: number): void {
+    this.catalogue(projectId).subscribe({
+      next: (response) => {
+        console.log(response);
       },
       error: () => {},
       complete: () => {},
