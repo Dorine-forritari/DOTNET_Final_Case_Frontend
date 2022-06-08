@@ -15,9 +15,10 @@
           <h5>Required skills:</h5>
           <ul>
             <li *ngFor="let skill of project.skills">
-              <p class="skills-item">{{ skill.name }}</p>
+              <p class="skills-item">{{ skill }}</p>
             </li>
           </ul>
+          <!-- <button (click)="getSkillNames()">Click</button> -->
         </div>
       </div>
     </div>
