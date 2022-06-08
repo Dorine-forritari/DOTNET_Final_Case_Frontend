@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
 
-const { apiUrl } = environment;
+const { mockProjectApiUrl } = environment;
 
 @Injectable({
   providedIn: 'root',
 })
 export class CatalogueService {
-  private _projects: Project[] = []
+  private _projects: Project[] = [];
 
   get projects(): Project[] {
     return this._projects;
@@ -19,7 +19,7 @@ export class CatalogueService {
 
   public catalogue() {
     // Test URL
-    return this.http.get<ProjectResponse[]>(apiUrl);
+    return this.http.get<ProjectResponse[]>(mockProjectApiUrl);
   }
 
   public fetchCatalogue(): void {
@@ -35,5 +35,4 @@ export class CatalogueService {
       complete: () => {},
     });
   }
-
 }
