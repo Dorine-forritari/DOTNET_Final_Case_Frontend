@@ -25,7 +25,7 @@ export let mockProjects: Project[] = [
   {
     id: 2,
     title: "Programming project",
-    description: "Description of music project",
+    description: "Description of programming project",
     theme: "computer store",
     industry: "Web development",
     skills: [

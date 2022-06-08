@@ -13,4 +13,8 @@ export class CatalogueComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getSingleProject(project: any) {
+    return project;
+  }
 }
