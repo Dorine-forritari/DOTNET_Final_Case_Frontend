@@ -1,3 +1,4 @@
+import { CatalogueService } from 'src/app/services/catalogue.service';
 import { mockSkills } from 'src/app/data/mock-data';
 import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
@@ -13,12 +14,14 @@ export class CatalogueComponent implements OnInit {
   @Input() projects: Project[] = [];
   // //TODO!!! all skills should come from API
   allSkills: Skill[] = mockSkills;
-  // projectSkills: Skill[] = [];
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private catalogueService: CatalogueService
+  ) {
     setTimeout(() => {
       this.getSkillNames();
-    }, 100);
+    }, 500);
   }
 
   getSkillNames(): void {
@@ -28,16 +31,15 @@ export class CatalogueComponent implements OnInit {
         project.skills.splice(i, 1, found?.name);
       }
     });
+    console.log(this.projects);
+    this.catalogueService.projects = this.projects;
   }
 
-  ngOnInit(): void {
-    console.log(this.projects);
-    this.projects.map((project) => console.log(project));
-  }
+  ngOnInit(): void {}
 
   // map projects
 
   goToProject(project: any) {
-    this.router.navigate(['project'], { queryParams: { id: project.id } });
+    this.router.navigate(['project', project.id]);
   }
 }

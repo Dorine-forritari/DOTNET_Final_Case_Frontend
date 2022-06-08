@@ -1,20 +1,20 @@
 <div class="card">
   <app-project-header
-    [title]="currentProject.title"
-    [industry]="currentProject.industry"
+    [title]="currentProject?.title"
+    [industry]="currentProject?.industry"
   ></app-project-header>
   <!-- Project details -->
   <div class="project-info-container">
     <div class="project-info">
       <p>Project owner:</p>
-      <p>Field / industry: {{ currentProject.industry }}</p>
-      <p>Theme / purpose: {{ currentProject.theme }}</p>
+      <p>Field / industry: {{ currentProject?.industry }}</p>
+      <p>Theme / purpose: {{ currentProject?.theme }}</p>
     </div>
     <div class="project-skills">
       <h5>Required skills:</h5>
       <ul>
-        <li *ngFor="let skill of currentProject.skills">
-          <p class="skills-item">{{ skill.name }}</p>
+        <li *ngFor="let skill of currentProject?.skills">
+          <p class="skills-item">{{ skill }}</p>
         </li>
       </ul>
     </div>

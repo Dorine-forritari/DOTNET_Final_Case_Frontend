@@ -15,6 +15,14 @@ export class CatalogueService {
     return this._projects;
   }
 
+  set projects(projectList: Project[]) {
+    if (projectList === undefined) {
+      throw new Error('The user is undefined');
+    }
+    sessionStorage.setItem('projects', JSON.stringify(projectList));
+    this._projects = projectList;
+  }
+
   constructor(private http: HttpClient) {}
 
   // Fetch whole catalogue

@@ -9,12 +9,7 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  title: string = '';
-  industry: string = 'Web development';
-  theme: string = '';
-  skills: any = [{ name: 'piano' }];
-
-  currentProject: any = localStorage.getItem('project');
+  currentProject: Project | undefined;
 
   get projects(): Project[] {
     return this.catalogueService.projects;
@@ -33,8 +28,11 @@ export class ProjectComponent implements OnInit {
     //   );
     //   this.catalogueService.fetchProject(projectId);
     this.currentProject = this.projects.find(
-      ({ id }) => id === Number(this.route.snapshot.queryParamMap.get('id'))
+      ({ id }) => id === Number(this.route.snapshot.paramMap.get('id'))
     );
-    localStorage.setItem('project', JSON.stringify(this.currentProject));
+    sessionStorage.setItem(
+      'selected project',
+      JSON.stringify(this.currentProject)
+    );
   }
 }
