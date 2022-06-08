@@ -23,11 +23,7 @@ export class ProfilecardComponent implements OnInit {
 
   getSkillNames(): void {
     for (let i = 0; i < this.loggedInUser.skills.length; i++) {
-      console.log(i);
-
       for (let j = 0; j < this.allSkills.length; j++) {
-        console.log(j);
-
         if (this.loggedInUser.skills[i] == this.allSkills[j].id) {
           this.loggedInUserSkills.push(this.allSkills[j]);
           break;
