@@ -1,3 +1,4 @@
+import { ProjectPage } from './pages/project/project.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPage } from './pages/main/main.page';
@@ -8,38 +9,42 @@ import { ProjectAdministrationPage } from './pages/project-administration/projec
 
 const routes: Routes = [
   {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "/main",
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/main',
   },
   {
-    path: "main",
-    component: MainPage
+    path: 'main',
+    component: MainPage,
   },
   {
-    path: "profile",
-    component: ProfilePage
-  },
-  { 
-    path: "search/:searchInput",
-    component: SearchPage
+    path: 'profile',
+    component: ProfilePage,
   },
   {
-    path: "search",
-    pathMatch: "full",
-    redirectTo: "/main"
+    path: 'search/:searchInput',
+    component: SearchPage,
   },
   {
-    path: "catalogue",
+    path: 'search',
+    pathMatch: 'full',
+    redirectTo: '/main',
+  },
+  {
+    path: 'catalogue',
     component: CataloguePage,
   },
 
   {
     path: "projectadministration",
     component: ProjectAdministrationPage,
-  }
+  },
 
-
+  // TO DO: go to page based on the projectId perhaps
+  {
+    path: 'project',
+    component: ProjectPage,
+  },
 ];
 
 @NgModule({

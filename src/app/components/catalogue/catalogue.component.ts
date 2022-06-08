@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 
@@ -7,14 +8,19 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./catalogue.component.scss'],
 })
 export class CatalogueComponent implements OnInit {
-  // @Input() projects: Project[] = mockProjects;
   @Input() projects: Project[] = [];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.projects);
+    this.projects.map((project) => console.log(project));
+  }
 
-  getSingleProject(project: any) {
-    return project;
+  // map projects
+
+  goToProject(project: any) {
+    this.router.navigate(['project'], { queryParams: { id: project.id } });
+    // this.router.navigate(['project', this.projects.id]);
   }
 }

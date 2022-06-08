@@ -9,7 +9,7 @@ const { apiUrl } = environment;
   providedIn: 'root',
 })
 export class CatalogueService {
-  private _projects: Project[] = []
+  private _projects: Project[] = [];
 
   get projects(): Project[] {
     return this._projects;
@@ -17,13 +17,9 @@ export class CatalogueService {
 
   constructor(private http: HttpClient) {}
 
-  public catalogue() {
-    // Test URL
-    return this.http.get<ProjectResponse[]>(apiUrl);
-  }
-
+  // Fetch whole catalogue
   public fetchCatalogue(): void {
-    this.catalogue().subscribe({
+    this.http.get<ProjectResponse[]>(apiUrl).subscribe({
       next: (response: any) => {
         this._projects = response.map((project: Project) => {
           return {
@@ -36,4 +32,14 @@ export class CatalogueService {
     });
   }
 
+  // Fetch single project based on ID
+  public fetchProject(projectId: number): void {
+    this.http.get<ProjectResponse[]>(apiUrl + '/' + projectId).subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: () => {},
+      complete: () => {},
+    });
+  }
 }

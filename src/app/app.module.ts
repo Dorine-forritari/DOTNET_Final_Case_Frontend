@@ -11,8 +11,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfilecardComponent } from './components/profilecard/profilecard.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { FormsModule } from '@angular/forms';
-import { ProjectIconComponent } from './components/catalogue/project-icon/project-icon.component';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
+import { ProjectComponent } from './components/project/project.component';
+import { ProjectPage } from './pages/project/project.page';
+import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { SearchPage } from './pages/search/search.page';
 import { ProjectAdministrationPage } from './pages/project-administration/project-administration.page';
 
@@ -25,17 +27,14 @@ import { ProjectAdministrationPage } from './pages/project-administration/projec
     NavbarComponent,
     ProfilecardComponent,
     SearchbarComponent,
-    ProjectIconComponent,
     CataloguePage,
+    ProjectComponent,
+    ProjectPage,
+    ProjectHeaderComponent,
     SearchPage,
     ProjectAdministrationPage,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
