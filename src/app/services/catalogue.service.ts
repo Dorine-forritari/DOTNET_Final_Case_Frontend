@@ -17,13 +17,9 @@ export class CatalogueService {
 
   constructor(private http: HttpClient) {}
 
-  public catalogue() {
-    // Test URL
-    return this.http.get<ProjectResponse[]>(mockProjectApiUrl);
-  }
-
+  // Fetch whole catalogue
   public fetchCatalogue(): void {
-    this.catalogue().subscribe({
+    this.http.get<ProjectResponse[]>(mockProjectApiUrl).subscribe({
       next: (response: any) => {
         this._projects = response.map((project: Project) => {
           return {
@@ -34,5 +30,18 @@ export class CatalogueService {
       error: () => {},
       complete: () => {},
     });
+  }
+
+  // Fetch single project based on ID
+  public fetchProject(projectId: number): void {
+    this.http
+      .get<ProjectResponse[]>(mockProjectApiUrl + '/' + projectId)
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: () => {},
+        complete: () => {},
+      });
   }
 }

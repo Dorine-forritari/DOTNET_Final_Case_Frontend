@@ -1,11 +1,6 @@
-import {
-  AfterContentChecked,
-  AfterViewInit,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
 import { mockSkills } from 'src/app/data/mock-data';
+import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 import { Skill } from 'src/app/models/skill.model';
 
@@ -20,12 +15,11 @@ export class CatalogueComponent implements OnInit {
   allSkills: Skill[] = mockSkills;
   // projectSkills: Skill[] = [];
 
-  constructor() {
+  constructor(private router: Router) {
     setTimeout(() => {
       this.getSkillNames();
     }, 100);
   }
-
   getSkillNames(): void {
     // console.log(this.projects);
     this.projects.map((project) => {
@@ -49,5 +43,14 @@ export class CatalogueComponent implements OnInit {
     //       }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.projects);
+    this.projects.map((project) => console.log(project));
+  }
+
+  // map projects
+
+  goToProject(project: any) {
+    this.router.navigate(['project'], { queryParams: { id: project.id } });
+  }
 }
