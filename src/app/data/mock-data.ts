@@ -127,4 +127,12 @@ export let mockSkills: Skill[] = [
     id: 6,
     name: 'directing',
   },
+  {
+    id: 7,
+    name: '3D modelling',
+  },
+  {
+    id: 8,
+    name: 'Water modelling',
+  },
 ];

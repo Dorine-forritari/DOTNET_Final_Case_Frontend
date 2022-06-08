@@ -20,27 +20,14 @@ export class CatalogueComponent implements OnInit {
       this.getSkillNames();
     }, 100);
   }
-  getSkillNames(): void {
-    // console.log(this.projects);
-    this.projects.map((project) => {
-      console.log(project.skills);
-      project.skills.forEach((element) => {
-        console.log(element);
-        const found = this.allSkills.find((e) => e === element);
-        console.log(found);
-      });
 
-      // for (let i = 0; i < element.skills.length; i++) {
-      //   console.log(element.skills);
-      // }
+  getSkillNames(): void {
+    this.projects.map((project) => {
+      for (let i = 0; i < project.skills.length; i++) {
+        const found = this.allSkills.find((e) => e.id === project.skills[i]);
+        project.skills.splice(i, 1, found?.name);
+      }
     });
-    //     for (let i = 0; i < e.skills.length; i++) {
-    //       for (let j = 0; j < this.allSkills.length; j++) {
-    //         if (e.skills[i] == this.allSkills[j].id) {
-    //           this.projectSkills.push(this.allSkills[j]);
-    //           break;
-    //         }
-    //       }
   }
 
   ngOnInit(): void {
