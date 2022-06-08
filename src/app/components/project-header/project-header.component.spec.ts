@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProjectIconComponent } from './project-icon.component';
+import { ProjectHeaderComponent } from './project-header.component';
 
-describe('ProjectIconComponent', () => {
-  let component: ProjectIconComponent;
-  let fixture: ComponentFixture<ProjectIconComponent>;
+describe('ProjectHeaderComponent', () => {
+  let component: ProjectHeaderComponent;
+  let fixture: ComponentFixture<ProjectHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectIconComponent ]
+      declarations: [ ProjectHeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectIconComponent);
+    fixture = TestBed.createComponent(ProjectHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
