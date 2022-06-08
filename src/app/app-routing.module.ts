@@ -4,6 +4,7 @@ import { MainPage } from './pages/main/main.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { SearchPage } from './pages/search/search.page';
+import { AdministrationPage } from './pages/administration/administration.page';
 
 const routes: Routes = [
   {
@@ -32,6 +33,12 @@ const routes: Routes = [
     path: "catalogue",
     component: CataloguePage,
   },
+
+  {
+    path: "administration",
+    component: AdministrationPage,
+  }
+
 
 ];
 
