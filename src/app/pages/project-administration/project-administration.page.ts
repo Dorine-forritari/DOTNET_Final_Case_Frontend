@@ -9,8 +9,10 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   styleUrls: ['./project-administration.page.scss']
 })
 export class ProjectAdministrationPage implements OnInit {
+ 
 
   get projects(): Project[] {
+
     return this.catalogueService.projects;
   }
     

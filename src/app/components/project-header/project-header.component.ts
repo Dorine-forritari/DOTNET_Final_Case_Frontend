@@ -33,6 +33,6 @@ export class ProjectHeaderComponent implements OnInit {
   // Update a project. This is only for the user administrator
   onUpdateProject(){
     // TO DO Here we have to make the check of an user is an administrator.
-      this.router.navigateByUrl('/projectadministration/');
+      this.router.navigate(['projectadministration']);
   }
 }
