@@ -42,7 +42,7 @@ const routes: Routes = [
 
   // TO DO: go to page based on the projectId perhaps
   {
-    path: 'project',
+    path: 'project/:id',
     component: ProjectPage,
   },
 ];

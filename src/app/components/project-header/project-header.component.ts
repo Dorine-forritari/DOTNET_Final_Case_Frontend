@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./project-header.component.scss'],
 })
 export class ProjectHeaderComponent implements OnInit {
-  @Input() title: string = '';
+  @Input() title: string | undefined;
   @Input() industry: string | undefined;
 
   icon: string | undefined;
