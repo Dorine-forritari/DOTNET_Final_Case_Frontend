@@ -6,7 +6,7 @@ export interface Project {
   description: string;
   theme: string;
   industry: string;
-  skills: Skill[];
+  skills: any[];
   link: string;
   screen: string;
   photo: string;
