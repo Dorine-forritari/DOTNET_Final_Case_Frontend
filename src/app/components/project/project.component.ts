@@ -1,5 +1,6 @@
+import { ProjectService } from './../../services/project.service';
 import { CatalogueService } from 'src/app/services/catalogue.service';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 
@@ -18,6 +19,7 @@ export class ProjectComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private catalogueService: CatalogueService,
+    private projectService: ProjectService
   ) {}
 
   ngOnInit(): void {
@@ -30,10 +32,12 @@ export class ProjectComponent implements OnInit {
     this.currentProject = this.projects.find(
       ({ id }) => id === Number(this.route.snapshot.paramMap.get('id'))
     );
+
     sessionStorage.setItem(
       'selected project',
       JSON.stringify(this.currentProject)
     );
-  }
 
+    this.projectService.project = this.currentProject;
+  }
 }

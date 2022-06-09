@@ -5,9 +5,7 @@ import { MainPage } from './pages/main/main.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { SearchPage } from './pages/search/search.page';
-import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
-import { ProjectComponent } from './components/project/project.component';
-
+import { ProjectAdministrationPage } from './pages/project-administration/project-administration.page';
 
 const routes: Routes = [
   {
@@ -36,20 +34,24 @@ const routes: Routes = [
     path: 'catalogue',
     component: CataloguePage,
   },
-
-  {
-    path: "projectadministration",
-    component: ProjectAdministrationComponent,
-  },
-
-  // TO DO: go to page based on the projectId perhaps
   {
     path: 'project/:id',
     component: ProjectPage,
-    children: [{path: "project", component: ProjectComponent},
-               {path: "administration", component: ProjectAdministrationComponent}
-              ]
   },
+  {
+    path: 'projectadministration',
+    component: ProjectAdministrationPage,
+  },
+
+  // TO DO: go to page based on the projectId perhaps
+  // {
+  //   path: 'project',
+  //   component: ProjectPage,
+  //   children: [
+  //     { path: ':id', component: ProjectComponent },
+  //     { path: 'administration', component: ProjectAdministrationComponent },
+  //   ],
+  // },
 ];
 
 @NgModule({
