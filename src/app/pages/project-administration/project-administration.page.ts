@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { mockProjects } from 'src/app/data/mock-data';
 import { Project } from 'src/app/models/project.model';
 import { CatalogueService } from 'src/app/services/catalogue.service';
@@ -10,19 +11,29 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
 })
 export class ProjectAdministrationPage implements OnInit {
  
+  @Input() title: string | undefined;
+  @Input() industry: string | undefined;
 
+  currentProject: Project | undefined;
+  
   get projects(): Project[] {
 
     return this.catalogueService.projects;
   }
     
-    constructor(private catalogueService: CatalogueService) { }
+    constructor(private catalogueService: CatalogueService,
+                private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   
     // Load projects
-    this.catalogueService.fetchCatalogue();
-    
+    this.currentProject = this.projects.find(
+      ({ id }) => id === Number(this.route.snapshot.paramMap.get('id'))
+    );
+    sessionStorage.setItem(
+      'selected project',
+      JSON.stringify(this.currentProject)
+    );
   }
 
 }

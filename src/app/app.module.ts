@@ -17,6 +17,7 @@ import { ProjectPage } from './pages/project/project.page';
 import { ProjectHeaderComponent } from './components/project-header/project-header.component';
 import { SearchPage } from './pages/search/search.page';
 import { ProjectAdministrationPage } from './pages/project-administration/project-administration.page';
+import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ProjectAdministrationPage } from './pages/project-administration/projec
     ProjectHeaderComponent,
     SearchPage,
     ProjectAdministrationPage,
+    ProjectAdministrationComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

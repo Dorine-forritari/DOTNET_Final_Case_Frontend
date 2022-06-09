@@ -1,15 +1,12 @@
-
-
-<div class="container" *ngFor="let project of projects">
-    <h1 class="title">Project Administration Page</h1>
-    <div class="container-header">
-      <h1 class="title" *ngIf="project.id ==1">{{project.title}}</h1>
-    </div>
-    <label for="status">Choose a status:</label>&nbsp;
-    <select name="status" id="status">
-  <option value="founding">Founding</option>
-  <option value="in-progress">In progress</option>
-  <option value="stalled">Stalled</option>
-  <option value="completed">Completed</option>
-    </select>
+<div class="container">
+  <app-project></app-project>
 </div>
+
+  <label for="status">Choose a status:</label>&nbsp;
+  <select name="status" id="status">
+<option value="founding">Founding</option>
+<option value="in-progress">In progress</option>
+<option value="stalled">Stalled</option>
+<option value="completed">Completed</option>
+  </select>
+

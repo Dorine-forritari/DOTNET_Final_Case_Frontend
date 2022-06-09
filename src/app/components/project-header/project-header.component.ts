@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Project } from 'src/app/models/project.model';
+import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
   selector: 'app-project-header',
@@ -12,7 +14,14 @@ export class ProjectHeaderComponent implements OnInit {
 
   icon: string | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  currentProject: Project | undefined;
+  get projects(): Project[] {
+    return this.catalogueService.projects;
+  }
+
+  constructor(private route: ActivatedRoute, 
+              private router: Router,
+              private catalogueService: CatalogueService) {}
 
   ngOnInit(): void {
     this.industry = this.industry?.toLowerCase();
@@ -32,6 +41,11 @@ export class ProjectHeaderComponent implements OnInit {
 
   // Update a project. This is only for the user administrator
   onUpdateProject(){
+
+    this.currentProject = this.catalogueService.projects.find(
+      ({ id }) => id === Number(this.route.snapshot.paramMap.get('id'))
+    );
+
     // TO DO Here we have to make the check of an user is an administrator.
       this.router.navigate(['projectadministration']);
   }
