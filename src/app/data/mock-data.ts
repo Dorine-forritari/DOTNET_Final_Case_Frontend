@@ -91,8 +91,8 @@ export let mockUsers: User[] = [
     email: "leroy@gmail.com",
     portfolio: "this is my portfolio",
     description: "this is my description",
-    hidden: false,
-    skills: [2,3],
+    hidden: true,
+    skills: [3,4],
     projects: [1,2]
   },
   {
@@ -103,7 +103,7 @@ export let mockUsers: User[] = [
     portfolio: "this is my portfolio",
     description: "this is my description",
     hidden: false,
-    skills: [2,3],
+    skills: [5,6],
     projects: [1,2]
   },
   {
@@ -114,7 +114,7 @@ export let mockUsers: User[] = [
     portfolio: "this is my portfolio",
     description: "this is my description",
     hidden: false,
-    skills: [1,2],
+    skills: [2,5],
     projects: [1,2]
   }
 ];

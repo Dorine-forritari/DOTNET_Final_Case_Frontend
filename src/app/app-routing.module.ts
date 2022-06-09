@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPage } from './pages/main/main.page';
 import { ProfilePage } from './pages/profile/profile.page';
+import { ProfileEditPage } from './pages/profile-edit/profile-edit.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { SearchPage } from './pages/search/search.page';
 
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePage,
+  },
+  {
+    path: 'profile-edit',
+    component: ProfileEditPage,
   },
   {
     path: 'search/:searchInput',
