@@ -12,3 +12,7 @@ export interface User {
   skills: number[];
   projects: number[];
 }
+
+export interface UserResponse {
+  user: User;
+}
