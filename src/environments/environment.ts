@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://mocki.io/v1/ae78f836-f3bf-48f3-a32e-e25ddf2d71e4',
+  mockProjectApiUrl: 'https://mocki.io/v1/960862b5-8cb7-4b4e-88da-1804a79d3ce5',
 };
 
 /*

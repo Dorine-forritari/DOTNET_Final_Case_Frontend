@@ -8,7 +8,6 @@ import { CatalogueService } from 'src/app/services/catalogue.service';
   styleUrls: ['./catalogue.page.scss'],
 })
 export class CataloguePage implements OnInit {
-  
   get projects(): Project[] {
     return this.catalogueService.projects;
   }
