@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
-import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-project-header',
@@ -9,14 +8,12 @@ import { ProjectService } from 'src/app/services/project.service';
   styleUrls: ['./project-header.component.scss'],
 })
 export class ProjectHeaderComponent implements OnInit {
+  @Input() projects: Project[] = [];
+
   selectedProject: Project | undefined;
   selectedIndustry: string | undefined;
 
-  get project(): Project | undefined {
-    return this.projectService.project;
-  }
-
-  constructor(private router: Router, private projectService: ProjectService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.selectedProject = JSON.parse(
@@ -39,6 +36,8 @@ export class ProjectHeaderComponent implements OnInit {
 
   // Update a project. This is only for the user administrator
   goToProjectAdministration() {
-    this.router.navigate(['project/administration']);
+    this.router.navigate([
+      `project/${this.selectedProject?.id}/administration`,
+    ]);
   }
 }

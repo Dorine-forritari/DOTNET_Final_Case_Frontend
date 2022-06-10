@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
-import { ProjectService } from 'src/app/services/project.service';
-
 @Component({
   selector: 'app-catalogue-project-header',
   templateUrl: './catalogue-project-header.component.html',
@@ -16,11 +13,7 @@ export class CatalogueProjectHeaderComponent implements OnInit {
 
   currentProject: Project | undefined;
 
-  get project(): Project | undefined {
-    return this.projectService.project;
-  }
-
-  constructor(private projectService: ProjectService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.industry = this.industry?.toLowerCase();

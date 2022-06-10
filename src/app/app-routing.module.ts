@@ -36,7 +36,7 @@ const routes: Routes = [
     component: CataloguePage,
   },
   {
-    path: 'project',
+    path: 'project/:id',
     component: ProjectPage,
     children: [
       {

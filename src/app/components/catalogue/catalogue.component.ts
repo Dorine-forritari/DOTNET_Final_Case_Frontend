@@ -1,8 +1,6 @@
-import { ProjectService } from 'src/app/services/project.service';
 import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
-
 @Component({
   selector: 'app-catalogue',
   templateUrl: './catalogue.component.html',
@@ -11,13 +9,15 @@ import { Project } from 'src/app/models/project.model';
 export class CatalogueComponent implements OnInit {
   @Input() projects: Project[] = [];
 
-  constructor(private router: Router, private projectService: ProjectService) {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.projects);
+  }
 
   // map projects
-  goToProject(project: any) {
-    this.projectService.project = project;
-    this.router.navigate(['project']);
+
+  goToProject(projectId: number) {
+    this.router.navigate(['project', projectId]);
   }
 }

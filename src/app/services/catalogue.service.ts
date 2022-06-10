@@ -12,18 +12,23 @@ const { mockProjectApiUrl } = environment;
 })
 export class CatalogueService {
   private _projects: Project[] = [];
+  private _selectedProject: Project | undefined;
   // //TODO!!! all skills should come from API
   allSkills: Skill[] = mockSkills;
+
+  get selectedProject(): Project | undefined {
+    return this._selectedProject;
+  }
+
+  set selectedProject(project: Project | undefined) {
+    this._selectedProject = project;
+  }
 
   get projects(): Project[] {
     return this._projects;
   }
 
   set projects(projectList: Project[]) {
-    if (projectList === undefined) {
-      throw new Error('The user is undefined');
-    }
-    sessionStorage.setItem('projects-list', JSON.stringify(projectList));
     this._projects = projectList;
   }
 

@@ -1,4 +1,3 @@
-import { ProjectService } from './../../services/project.service';
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/models/project.model';
 
@@ -10,9 +9,9 @@ import { Project } from 'src/app/models/project.model';
 export class ProjectAdministrationComponent implements OnInit {
   currentProject: Project | undefined;
 
-  constructor(private projectService: ProjectService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.currentProject = this.projectService.project;
+    // this.currentProject = this.projectService.project;
   }
 }
