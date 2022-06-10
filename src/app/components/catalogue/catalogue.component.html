@@ -1,10 +1,10 @@
 <ul class="projects-list">
   <li *ngFor="let project of projects">
     <div class="card" (click)="goToProject(project)">
-      <app-project-header
+      <app-catalogue-project-header
         [title]="project.title"
         [industry]="project.industry"
-      ></app-project-header>
+      ></app-catalogue-project-header>
       <div class="project-info-container">
         <div class="project-info">
           <p>Project owner:</p>

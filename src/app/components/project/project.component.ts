@@ -1,8 +1,7 @@
-import { ProjectService } from './../../services/project.service';
-import { CatalogueService } from 'src/app/services/catalogue.service';
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from './../../services/project.service';
 import { Project } from 'src/app/models/project.model';
+import { CatalogueService } from 'src/app/services/catalogue.service';
 
 @Component({
   selector: 'app-project',
@@ -10,34 +9,57 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./project.component.scss'],
 })
 export class ProjectComponent implements OnInit {
-  currentProject: Project | undefined;
+  selectedProject: Project | undefined;
+  projectsList: Project[] | undefined;
 
+  // Single project
+  get projectId(): number | undefined {
+    return this.projectService.project?.id;
+  }
+
+  // All projects
   get projects(): Project[] {
     return this.catalogueService.projects;
   }
 
   constructor(
-    private route: ActivatedRoute,
-    private catalogueService: CatalogueService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private catalogueService: CatalogueService
   ) {}
 
   ngOnInit(): void {
+    const found = this.projects.find((element) => {
+      return element.id === this.projectId;
+    });
+
+    const projectJson = JSON.parse(sessionStorage.getItem('project') || '{}');
+
+    if (found === undefined) {
+      this.selectedProject = projectJson;
+    } else {
+      sessionStorage.setItem(
+        'project',
+        JSON.stringify(this.projectService.project)
+      );
+
+      this.selectedProject = projectJson;
+    }
+
+    console.log(JSON.parse(sessionStorage.getItem('project') || '{}'));
+
+    // if (sessionStorage.getItem('project') === null) {
+    //   this.selectedProject = this.project;
+    // } else {
+    //   const selectedProject = JSON.parse(
+    //     sessionStorage.getItem('project') || '{}'
+    //   );
+    //   this.selectedProject = selectedProject;
+    // }
     // GET PROJECT ID FROM URL AND SEND TO CATALOGUESERVICE
     //   console.log(this.route.snapshot.queryParamMap.get('id'));
     //   const projectId: number = Number(
     //     this.route.snapshot.queryParamMap.get('id')
     //   );
     //   this.catalogueService.fetchProject(projectId);
-    this.currentProject = this.projects.find(
-      ({ id }) => id === Number(this.route.snapshot.paramMap.get('id'))
-    );
-
-    sessionStorage.setItem(
-      'selected project',
-      JSON.stringify(this.currentProject)
-    );
-
-    this.projectService.project = this.currentProject;
   }
 }

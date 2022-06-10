@@ -1,3 +1,5 @@
+import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
+import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,7 +7,6 @@ import { MainPage } from './pages/main/main.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { SearchPage } from './pages/search/search.page';
-import { ProjectAdministrationPage } from './pages/project-administration/project-administration.page';
 
 const routes: Routes = [
   {
@@ -35,13 +36,28 @@ const routes: Routes = [
     component: CataloguePage,
   },
   {
-    path: 'project/:id',
+    path: 'project',
     component: ProjectPage,
+    children: [
+      {
+        path: '',
+        redirectTo: 'details',
+        pathMatch: 'full',
+      },
+      {
+        path: 'details',
+        component: ProjectComponent,
+      },
+      {
+        path: 'administration',
+        component: ProjectAdministrationComponent,
+      },
+    ],
   },
-  {
-    path: 'projectadministration',
-    component: ProjectAdministrationPage,
-  },
+  // {
+  //   path: 'projectadministration/:id',
+  //   component: ProjectAdministrationPage,
+  // },
 
   // TO DO: go to page based on the projectId perhaps
   // {
