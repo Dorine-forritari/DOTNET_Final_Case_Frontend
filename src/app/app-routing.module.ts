@@ -54,20 +54,6 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: 'projectadministration/:id',
-  //   component: ProjectAdministrationPage,
-  // },
-
-  // TO DO: go to page based on the projectId perhaps
-  // {
-  //   path: 'project',
-  //   component: ProjectPage,
-  //   children: [
-  //     { path: ':id', component: ProjectComponent },
-  //     { path: 'administration', component: ProjectAdministrationComponent },
-  //   ],
-  // },
 ];
 
 @NgModule({
