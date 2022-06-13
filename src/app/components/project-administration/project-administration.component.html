@@ -1,24 +1,55 @@
-<h4>Administration</h4>
-<form #createProjectForm="ngForm" (ngSubmit)="onSubmit(createProjectForm)">
-  <div class="container">
+<div class="container">
+  <form #createProjectForm="ngForm" (ngSubmit)="onSubmit(createProjectForm)">
     <fieldset class="mb-3">
-      <label for="project-name">Project name: </label>
-      <input type="text" name="project-name" ngModel />
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="title">Project name:</span>
+        </div>
+        <input
+          type="text"
+          name="title"
+          class="form-control"
+          ngModel="{{ selectedProject?.title }}"
+          aria-label="Small"
+          aria-describedby="inputGroup-sizing-sm"
+          placeholder="{{ selectedProject?.title }}"
+        />
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="theme">Theme / purpose:</span>
+        </div>
+        <input
+          type="text"
+          name="theme"
+          class="form-control"
+          ngModel="{{ selectedProject?.theme }}"
+          aria-label="Small"
+          aria-describedby="inputGroup-sizing-sm"
+          placeholder="{{ selectedProject?.theme }}"
+        />
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="industry">Field / industry:</span>
+        </div>
+        <input
+          type="text"
+          name="industry"
+          class="form-control"
+          ngModel="{{ selectedProject?.industry }}"
+          aria-label="Small"
+          aria-describedby="inputGroup-sizing-sm"
+          placeholder="{{ selectedProject?.industry }}"
+        />
+      </div>
     </fieldset>
-    <fieldset class="mb-3">
-      <label for="theme">Theme/purpose: </label>
-      <input type="text" name="theme" ngModel="{{ selectedProject?.theme }}" />
-    </fieldset>
-    <fieldset class="mb-3">
-      <label for="industry">Field/Industry: </label>
-      <input
-        type="text"
-        name="industry"
-        ngModel="{{ selectedProject?.industry }}"
-      />
-    </fieldset>
-  </div>
-  <button type="submit" [disabled]="createProjectForm.form.invalid">
-    Submit
-  </button>
-</form>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="createProjectForm.form.invalid"
+    >
+      Save
+    </button>
+  </form>
+</div>
