@@ -18,15 +18,15 @@ export class CatalogueProjectHeaderComponent implements OnInit {
   ngOnInit(): void {
     this.industry = this.industry?.toLowerCase();
     if (this.industry === 'web development') {
-      this.industry = 'globe';
+      this.icon = 'globe';
     } else if (this.industry === 'music') {
-      this.industry = 'music-note-beamed';
+      this.icon = 'music-note-beamed';
     } else if (this.industry === 'movie') {
-      this.industry = 'camera-reels';
+      this.icon = 'camera-reels';
     } else if (this.industry === 'game development') {
-      this.industry = 'joystick';
+      this.icon = 'joystick';
     } else {
-      this.industry = 'file-earmark';
+      this.icon = 'file-earmark';
     }
   }
 }

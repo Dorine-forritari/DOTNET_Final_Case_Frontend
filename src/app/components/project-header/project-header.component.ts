@@ -12,6 +12,7 @@ export class ProjectHeaderComponent implements OnInit {
 
   selectedProject: Project | undefined;
   selectedIndustry: string | undefined;
+  icon: string | undefined;
 
   constructor(private router: Router) {}
 
@@ -22,15 +23,15 @@ export class ProjectHeaderComponent implements OnInit {
     this.selectedIndustry = this.selectedProject?.industry.toLowerCase();
 
     if (this.selectedIndustry === 'web development') {
-      this.selectedIndustry = 'globe';
+      this.icon = 'globe';
     } else if (this.selectedIndustry === 'music') {
-      this.selectedIndustry = 'music-note-beamed';
+      this.icon = 'music-note-beamed';
     } else if (this.selectedIndustry === 'movie') {
-      this.selectedIndustry = 'camera-reels';
+      this.icon = 'camera-reels';
     } else if (this.selectedIndustry === 'game development') {
-      this.selectedIndustry = 'joystick';
+      this.icon = 'joystick';
     } else {
-      this.selectedIndustry = 'file-earmark';
+      this.icon = 'file-earmark';
     }
   }
 
