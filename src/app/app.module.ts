@@ -18,6 +18,8 @@ import { ProjectHeaderComponent } from './components/project-header/project-head
 import { SearchPage } from './pages/search/search.page';
 import { ProfileEditPage } from './pages/profile-edit/profile-edit.page';
 import { ProfilecardEditComponent } from './components/profilecard-edit/profilecard-edit.component';
+import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
+import { CatalogueProjectHeaderComponent } from './components/catalogue-project-header/catalogue-project-header.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ProfilecardEditComponent } from './components/profilecard-edit/profilec
     SearchPage,
     ProfileEditPage,
     ProfilecardEditComponent,
+    ProjectAdministrationComponent,
+    CatalogueProjectHeaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

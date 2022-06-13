@@ -1,3 +1,62 @@
 .container {
     margin-top: 2em;
 }
+
+.card {
+    margin-bottom: 1rem;
+    border: 2px solid black;
+}
+
+.project-title {
+    margin-bottom: 0;
+    margin-left: 0.7em;
+}
+
+.project-info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.3em;
+}
+
+.project-info,
+.project-skills,
+.project-images,
+.project-progress,
+.project-chat {
+    margin-left: 1em;
+}
+
+.project-skills {
+    width: 13em;
+    margin-right: 1em;
+}
+
+.skills-item {
+    margin: 0;
+}
+
+.rounded {
+    margin: auto;
+    left: 50%;
+    width: 98%;
+}
+
+
+// Header
+.card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-header {
+    display: flex;
+}
+
+.project-title {
+    margin-bottom: 0;
+    margin-left: 0.7em;
+}
+
+#terms {
+    margin-right: 0.2em;
+}

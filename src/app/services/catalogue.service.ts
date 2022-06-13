@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
+import { Skill } from '../models/skill.model';
+import { mockSkills } from '../data/mock-data';
 
 const { mockProjectApiUrl } = environment;
 
@@ -10,16 +12,23 @@ const { mockProjectApiUrl } = environment;
 })
 export class CatalogueService {
   private _projects: Project[] = [];
+  private _selectedProject: Project | undefined;
+  // //TODO!!! all skills should come from API
+  allSkills: Skill[] = mockSkills;
+
+  get selectedProject(): Project | undefined {
+    return this._selectedProject;
+  }
+
+  set selectedProject(project: Project | undefined) {
+    this._selectedProject = project;
+  }
 
   get projects(): Project[] {
     return this._projects;
   }
 
   set projects(projectList: Project[]) {
-    if (projectList === undefined) {
-      throw new Error('The user is undefined');
-    }
-    sessionStorage.setItem('projects', JSON.stringify(projectList));
     this._projects = projectList;
   }
 
@@ -29,6 +38,7 @@ export class CatalogueService {
   public fetchCatalogue(): void {
     this.http.get<ProjectResponse[]>(mockProjectApiUrl).subscribe({
       next: (response: any) => {
+        this.getSkillNames(response);
         this._projects = response.map((project: Project) => {
           return {
             ...project,
@@ -51,5 +61,21 @@ export class CatalogueService {
         error: () => {},
         complete: () => {},
       });
+  }
+
+  getSkillNames(projects: Project[]): void {
+    projects.map((project: { skills: string[] }) => {
+      for (let i = 0; i < project.skills.length; i++) {
+        const found = this.allSkills.find(
+          (e) => e.id === Number(project.skills[i])
+        );
+        if (found === undefined) {
+          throw new Error('Project is undefined');
+        } else {
+          project.skills.splice(i, 1, found.name);
+        }
+      }
+    });
+    this._projects = this.projects;
   }
 }
