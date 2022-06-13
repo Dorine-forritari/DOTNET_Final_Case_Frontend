@@ -1,7 +1,7 @@
 <div class="card-header">
   <div class="project-header">
     <img src="/assets/img/{{ icon }}.svg" alt="icon" width="32" height="32" />
-    <h4 class="project-title">{{ selectedProject?.title }}</h4>
+    <h4 class="project-title">{{ title }}</h4>
   </div>
   <!-- only show if user is logged in -->
   <div>
@@ -11,15 +11,7 @@
       data-bs-toggle="modal"
       data-bs-target="#joinProjectModal"
     >
-      Join project</button
-    >&nbsp;
-    <!-- only show if user is an administrator -->
-    <button
-      type="button"
-      class="btn btn-dark btn-sm"
-      (click)="goToProjectAdministration()"
-    >
-      Update project
+      Join project
     </button>
   </div>
 </div>
@@ -39,7 +31,7 @@
       <div class="modal-header">
         <!-- TODO: The current project title -->
         <h5 class="modal-title" id="joinProjectModalLabel">
-          Want to join "{{ selectedProject?.title }}"?
+          Want to join "{{ title }}"?
         </h5>
         <button
           type="button"

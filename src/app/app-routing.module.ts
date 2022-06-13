@@ -1,3 +1,5 @@
+import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
+import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -33,10 +35,24 @@ const routes: Routes = [
     path: 'catalogue',
     component: CataloguePage,
   },
-  // TO DO: go to page based on the projectId perhaps
   {
     path: 'project/:id',
     component: ProjectPage,
+    children: [
+      {
+        path: '',
+        redirectTo: 'details',
+        pathMatch: 'full',
+      },
+      {
+        path: 'details',
+        component: ProjectComponent,
+      },
+      {
+        path: 'administration',
+        component: ProjectAdministrationComponent,
+      },
+    ],
   },
 ];
 
