@@ -100,7 +100,9 @@ export class ProfilecardEditComponent implements OnInit {
   }
 
   public onStartSubmit(form: NgForm) {
-    console.log(form.value);
+    this.loggedInUser.portfolio = form.value.portfolio;
+    this.loggedInUser.description = form.value.description;
+    this.loggedInUser.name = form.value.name;
   }
 
   ngOnInit(): void {}
