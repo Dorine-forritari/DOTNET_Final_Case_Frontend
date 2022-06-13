@@ -20,6 +20,7 @@ import { ProfileEditPage } from './pages/profile-edit/profile-edit.page';
 import { ProfilecardEditComponent } from './components/profilecard-edit/profilecard-edit.component';
 import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
 import { CatalogueProjectHeaderComponent } from './components/catalogue-project-header/catalogue-project-header.component';
+import { ProjectImagesCarouselComponent } from './components/project-images-carousel/project-images-carousel.component';
 
 // Auth0
 
@@ -52,6 +53,7 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
     LogoutButtonComponent,
     AuthenticationButtonComponent,
     
+    ProjectImagesCarouselComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,
    
