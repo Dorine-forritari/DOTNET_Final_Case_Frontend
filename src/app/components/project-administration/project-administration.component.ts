@@ -8,7 +8,7 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./project-administration.component.scss'],
 })
 export class ProjectAdministrationComponent implements OnInit {
-  projectFormControl = new FormControl('');
+  createProjectForm = new FormControl('');
   selectedProject: Project | undefined;
 
   constructor() {}

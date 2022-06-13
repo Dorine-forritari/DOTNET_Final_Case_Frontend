@@ -1,18 +1,4 @@
 <h4>Administration</h4>
-<!-- <div class="project-info">
-  <p>Project owner:</p>
-  <p>Field / industry: {{ selectedProject?.industry }}</p>
-  <p>Theme / purpose: {{ selectedProject?.theme }}</p>
-</div>
-<div class="project-skills">
-  <h5>Required skills:</h5>
-  <ul>
-    <li *ngFor="let skill of selectedProject?.skills">
-      <p class="skills-item">{{ skill }}</p>
-    </li>
-  </ul>
-</div> -->
-
 <form #createProjectForm="ngForm" (ngSubmit)="onSubmit(createProjectForm)">
   <div class="container">
     <fieldset class="mb-3">
@@ -21,11 +7,15 @@
     </fieldset>
     <fieldset class="mb-3">
       <label for="theme">Theme/purpose: </label>
-      <input type="text" name="theme" ngModel />
+      <input type="text" name="theme" ngModel="{{ selectedProject?.theme }}" />
     </fieldset>
     <fieldset class="mb-3">
       <label for="industry">Field/Industry: </label>
-      <input type="text" name="industry" ngModel />
+      <input
+        type="text"
+        name="industry"
+        ngModel="{{ selectedProject?.industry }}"
+      />
     </fieldset>
   </div>
   <button type="submit" [disabled]="createProjectForm.form.invalid">
