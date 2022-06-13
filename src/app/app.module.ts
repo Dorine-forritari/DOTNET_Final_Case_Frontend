@@ -21,6 +21,14 @@ import { ProfilecardEditComponent } from './components/profilecard-edit/profilec
 import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
 import { CatalogueProjectHeaderComponent } from './components/catalogue-project-header/catalogue-project-header.component';
 
+// Auth0
+
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { SignupButtonComponent } from './components/signup-button/signup-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +47,18 @@ import { CatalogueProjectHeaderComponent } from './components/catalogue-project-
     ProfilecardEditComponent,
     ProjectAdministrationComponent,
     CatalogueProjectHeaderComponent,
+    LoginButtonComponent,
+    SignupButtonComponent,
+    LogoutButtonComponent,
+    AuthenticationButtonComponent,
+    
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,
+   
+    // 👇 add and initialize AuthModule
+   AuthModule.forRoot({
+    ...env.auth,
+  }),],
   providers: [],
   bootstrap: [AppComponent],
 })
