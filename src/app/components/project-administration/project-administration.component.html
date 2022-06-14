@@ -1,6 +1,44 @@
 <div class="container">
+  <form [formGroup]="statusForm">
+    <div class="status-container">
+      <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="github">Project status:</span>
+        </div>
+        <select
+          class="status-select mb-3"
+          (change)="changeStatus($event)"
+          formControlName="status"
+        >
+          <option value="">Choose status</option>
+          <option *ngFor="let status of statusList" [ngValue]="status">
+            {{ status }}
+          </option>
+        </select>
+      </div>
+      <div class="statusSave">
+        <button type="submit" class="btn btn-success">Save</button>
+      </div>
+    </div>
+  </form>
+  <hr class="divider" />
   <form #createProjectForm="ngForm" (ngSubmit)="onSubmit(createProjectForm)">
     <fieldset class="mb-3">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="github">Github link:</span>
+        </div>
+        <input
+          type="text"
+          name="github"
+          class="form-control"
+          ngModel="{{ selectedProject?.link }}"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+          placeholder="{{ selectedProject?.link }}"
+        />
+      </div>
+      <hr class="divider" />
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="title">Project name:</span>
@@ -10,37 +48,37 @@
           name="title"
           class="form-control"
           ngModel="{{ selectedProject?.title }}"
-          aria-label="Small"
+          aria-label="small"
           aria-describedby="inputGroup-sizing-sm"
           placeholder="{{ selectedProject?.title }}"
         />
       </div>
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="theme">Theme / purpose:</span>
-        </div>
-        <input
-          type="text"
-          name="theme"
-          class="form-control"
-          ngModel="{{ selectedProject?.theme }}"
-          aria-label="Small"
-          aria-describedby="inputGroup-sizing-sm"
-          placeholder="{{ selectedProject?.theme }}"
-        />
-      </div>
-      <div class="input-group input-group-sm mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="industry">Field / industry:</span>
+          <span class="input-group-text" id="industry">Industry:</span>
         </div>
         <input
           type="text"
           name="industry"
           class="form-control"
           ngModel="{{ selectedProject?.industry }}"
-          aria-label="Small"
+          aria-label="small"
           aria-describedby="inputGroup-sizing-sm"
           placeholder="{{ selectedProject?.industry }}"
+        />
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="theme">Theme:</span>
+        </div>
+        <input
+          type="text"
+          name="theme"
+          class="form-control"
+          ngModel="{{ selectedProject?.theme }}"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+          placeholder="{{ selectedProject?.theme }}"
         />
       </div>
     </fieldset>

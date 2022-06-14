@@ -12,10 +12,10 @@ export let mockProjects: Project[] = [
     theme: 'rock music',
     industry: 'Music',
     skills: [1, 2],
-    link: '',
+    link: 'https://github.com/1',
     screen: '',
     photo: '',
-    progress: '',
+    progress: 'Founding',
   },
   {
     id: 2,
@@ -24,10 +24,10 @@ export let mockProjects: Project[] = [
     theme: 'computer store',
     industry: 'Web development',
     skills: [3, 4],
-    link: '',
+    link: 'https://github.com/2',
     screen: '',
     photo: '',
-    progress: '',
+    progress: 'In progress',
   },
   {
     id: 3,
@@ -36,10 +36,10 @@ export let mockProjects: Project[] = [
     theme: 'horror movie',
     industry: 'Movie',
     skills: [5, 6],
-    link: '',
+    link: 'https://github.com/3',
     screen: '',
     photo: '',
-    progress: '',
+    progress: 'Stalled',
   },
   {
     id: 4,
@@ -48,10 +48,10 @@ export let mockProjects: Project[] = [
     theme: 'Strategy, RPG',
     industry: 'Game development',
     skills: [7, 8],
-    link: '',
+    link: 'https://github.com/4',
     screen: '',
     photo: '',
-    progress: '',
+    progress: 'Complete',
   },
 ];
 
@@ -69,14 +69,14 @@ export let mockUsers: User[] = [
   },
   {
     id: 2,
-    name: "Leroy",
-    password: "password",
-    email: "leroy@gmail.com",
-    portfolio: "this is my portfolio",
-    description: "this is my description",
+    name: 'Leroy',
+    password: 'password',
+    email: 'leroy@gmail.com',
+    portfolio: 'this is my portfolio',
+    description: 'this is my description',
     hidden: true,
     skills: [3, 4],
-    projects: [1, 2]
+    projects: [1, 2],
   },
   {
     id: 3,
@@ -87,7 +87,7 @@ export let mockUsers: User[] = [
     description: 'this is my description',
     hidden: false,
     skills: [5, 6],
-    projects: [1, 2]
+    projects: [1, 2],
   },
   {
     id: 4,
@@ -98,8 +98,8 @@ export let mockUsers: User[] = [
     description: 'this is my description',
     hidden: false,
     skills: [2, 5],
-    projects: [1, 2]
-  }
+    projects: [1, 2],
+  },
 ];
 
 export let mockSkills: Skill[] = [

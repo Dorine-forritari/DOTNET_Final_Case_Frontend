@@ -10,7 +10,7 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfilecardComponent } from './components/profilecard/profilecard.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
@@ -42,7 +42,13 @@ import { ProjectImagesCarouselComponent } from './components/project-images-caro
     CatalogueProjectHeaderComponent,
     ProjectImagesCarouselComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
