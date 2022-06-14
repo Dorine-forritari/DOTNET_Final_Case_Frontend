@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
@@ -10,7 +11,7 @@ const { mockProjectApiUrl } = environment;
 @Injectable({
   providedIn: 'root',
 })
-export class CatalogueService {
+export class CatalogueService implements OnInit {
   private _projects: Project[] = [];
   private _selectedProject: Project | undefined;
   // //TODO!!! all skills should come from API
@@ -32,7 +33,13 @@ export class CatalogueService {
     this._projects = projectList;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public auth: AuthService) {}
+
+  ngOnInit() {
+    this.auth.user$.subscribe((profile) =>
+      sessionStorage.setItem('user', JSON.stringify(profile, null, 2))
+    );
+  }
 
   // Fetch whole catalogue
   public fetchCatalogue(): void {

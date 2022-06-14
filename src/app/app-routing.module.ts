@@ -3,7 +3,6 @@ import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MainPage } from './pages/main/main.page';
 import { ProfilePage } from './pages/profile/profile.page';
 import { ProfileEditPage } from './pages/profile-edit/profile-edit.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
@@ -13,11 +12,11 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/main',
+    redirectTo: '/catalogue',
   },
   {
     path: 'main',
-    component: MainPage,
+    component: CataloguePage,
   },
   {
     path: 'profile',

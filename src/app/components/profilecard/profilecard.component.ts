@@ -9,10 +9,10 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./profilecard.component.scss'],
 })
 export class ProfilecardComponent implements OnInit {
-  //TODO!!! logged in user should not be nr 0 in mockuser array
+  // TODO!!! logged in user should not be nr 0 in mockuser array
   @Input() loggedInUser: User = mockUsers[1];
   @Input() loggedInUserSkills: Skill[];
-  //TODO!!! all skills should come from API
+  // TODO!!! all skills should come from API
   allSkills: Skill[] = mockSkills;
 
   constructor() {

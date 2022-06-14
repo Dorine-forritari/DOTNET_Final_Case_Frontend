@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPage } from './pages/main/main.page';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ProfilePage } from './pages/profile/profile.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -33,7 +32,6 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
 @NgModule({
   declarations: [
     AppComponent,
-    MainPage,
     CatalogueComponent,
     ProfilePage,
     NavbarComponent,
@@ -52,15 +50,20 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
     SignupButtonComponent,
     LogoutButtonComponent,
     AuthenticationButtonComponent,
-    
+
     ProjectImagesCarouselComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,
-   
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+
     // 👇 add and initialize AuthModule
-   AuthModule.forRoot({
-    ...env.auth,
-  }),],
+    AuthModule.forRoot({
+      ...env.auth,
+    }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
