@@ -22,6 +22,14 @@ import { ProjectAdministrationComponent } from './components/project-administrat
 import { CatalogueProjectHeaderComponent } from './components/catalogue-project-header/catalogue-project-header.component';
 import { ProjectImagesCarouselComponent } from './components/project-images-carousel/project-images-carousel.component';
 
+// Auth0
+
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { SignupButtonComponent } from './components/signup-button/signup-button.component';
+import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
+import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +48,11 @@ import { ProjectImagesCarouselComponent } from './components/project-images-caro
     ProfilecardEditComponent,
     ProjectAdministrationComponent,
     CatalogueProjectHeaderComponent,
+    LoginButtonComponent,
+    SignupButtonComponent,
+    LogoutButtonComponent,
+    AuthenticationButtonComponent,
+
     ProjectImagesCarouselComponent,
   ],
   imports: [
@@ -48,6 +61,11 @@ import { ProjectImagesCarouselComponent } from './components/project-images-caro
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
+    // 👇 add and initialize AuthModule
+    AuthModule.forRoot({
+      ...env.auth,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
