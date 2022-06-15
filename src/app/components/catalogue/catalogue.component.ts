@@ -15,8 +15,6 @@ export class CatalogueComponent implements OnInit {
     console.log(this.projects);
   }
 
-  // map projects
-
   goToProject(projectId: number) {
     this.router.navigate(['project', projectId]);
   }
