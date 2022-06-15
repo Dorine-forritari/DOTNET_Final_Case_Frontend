@@ -14,11 +14,14 @@ export class CatalogueComponent implements OnInit {
     // this.userService.fetchUsersBasedOnEmail();
   }
 
+<<<<<<< HEAD
   async ngOnInit(): Promise<void> {
     // console.log('component: ' + sessionStorage.getItem('authUser'));
     await this.userService.fetchUsersBasedOnEmail();
   }
 
+=======
+>>>>>>> master
   goToProject(projectId: number) {
     this.router.navigate(['project', projectId]);
   }

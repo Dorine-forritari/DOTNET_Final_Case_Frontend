@@ -7,6 +7,7 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { ProfileEditPage } from './pages/profile-edit/profile-edit.page';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { SearchPage } from './pages/search/search.page';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   {
@@ -21,10 +22,12 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePage,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile-edit',
     component: ProfileEditPage,
+    canActivate: [AuthGuard]
   },
   {
     path: 'search/:searchInput',
@@ -38,10 +41,12 @@ const routes: Routes = [
   {
     path: 'catalogue',
     component: CataloguePage,
+    canActivate: [AuthGuard]
   },
   {
     path: 'project/:id',
     component: ProjectPage,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -64,4 +69,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

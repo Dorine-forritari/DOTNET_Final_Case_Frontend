@@ -9,7 +9,7 @@ import { ProfilePage } from './pages/profile/profile.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProfilecardComponent } from './components/profilecard/profilecard.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CataloguePage } from './pages/catalogue/catalogue.page';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
@@ -57,6 +57,7 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     // 👇 add and initialize AuthModule

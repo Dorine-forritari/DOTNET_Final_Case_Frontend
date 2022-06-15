@@ -7,3 +7,21 @@
     margin-bottom: 1em;
     margin-right: 1em;
 }
+
+.divider {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    left: 50%;
+}
+
+.status-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.status-select {
+    background-color: white;
+    border-radius: 0.5em;
+    border: 1px solid lightgray;
+}
