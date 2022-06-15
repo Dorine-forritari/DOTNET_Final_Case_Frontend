@@ -1,12 +1,14 @@
 import { AuthService } from '@auth0/auth0-angular';
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
 import { Skill } from '../models/skill.model';
 import { mockSkills } from '../data/mock-data';
 
-const { mockProjectApiUrl } = environment;
+const { mockProjectApiUrl, projectsApiUrl } = environment;
+
+// const testURL = 'https://cors-anywhere.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root',
@@ -43,9 +45,11 @@ export class CatalogueService implements OnInit {
 
   // Fetch whole catalogue
   public fetchCatalogue(): void {
-    this.http.get<ProjectResponse[]>(mockProjectApiUrl).subscribe({
+    this.http.get<ProjectResponse[]>(projectsApiUrl).subscribe({
       next: (response: any) => {
-        this.getSkillNames(response);
+        console.log(response);
+
+        // this.getSkillNames(response);
         this._projects = response.map((project: Project) => {
           return {
             ...project,
