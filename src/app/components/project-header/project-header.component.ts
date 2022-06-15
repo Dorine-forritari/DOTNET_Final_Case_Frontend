@@ -8,13 +8,12 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./project-header.component.scss'],
 })
 export class ProjectHeaderComponent implements OnInit {
-  @Input() projects: Project[] = [];
 
   selectedProject: Project | undefined;
   selectedIndustry: string | undefined;
   icon: string | undefined;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.selectedProject = JSON.parse(

@@ -30,6 +30,7 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
+import { SeeOtherUserProfileComponent } from './components/see-other-user-profile/see-other-user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,7 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
     AuthenticationButtonComponent,
     
     ProjectImagesCarouselComponent,
+          SeeOtherUserProfileComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,
    
