@@ -32,6 +32,7 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
 import { ProfileSetupComponent } from './components/profile-setup/profile-setup.component';
 import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
+import { SeeOtherUserProfileComponent } from './components/see-other-user-profile/see-other-user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,9 +56,10 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
     AuthenticationButtonComponent,
 
     ProjectImagesCarouselComponent,
-      ProfileSetupComponent,
-      ProfileSetupPage,
-      ProfileHeaderComponent,
+    ProfileSetupComponent,
+    ProfileSetupPage,
+    ProfileHeaderComponent,
+    SeeOtherUserProfileComponent,
   ],
   imports: [
     BrowserModule,

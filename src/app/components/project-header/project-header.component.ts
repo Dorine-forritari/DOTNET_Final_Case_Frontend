@@ -9,8 +9,6 @@ import { Project } from 'src/app/models/project.model';
   styleUrls: ['./project-header.component.scss'],
 })
 export class ProjectHeaderComponent implements OnInit {
-  @Input() projects: Project[] = [];
-
   selectedProject: Project | undefined;
   selectedIndustry: string | undefined;
   icon: string | undefined;
