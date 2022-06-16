@@ -10,11 +10,7 @@ import { AuthService } from '@auth0/auth0-angular';
 export class ProfilePage implements OnInit {
   constructor(private router: Router, public auth: AuthService) {}
 
-  ngOnInit(): void {
-    // this.auth.user$.subscribe(
-    //   (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
-    // );
-  }
+  ngOnInit(): void {}
 
   goToEditProfile() {
     this.router.navigate(['profile-edit']);

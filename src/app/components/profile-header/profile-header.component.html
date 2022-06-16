@@ -1,12 +1,19 @@
 <div class="card-header">
   <div class="profile-header">
-    <img
-      src="/assets/icon/person.svg"
-      alt="Account Icon"
-      width="32"
-      height="32"
-    />
-    <h4 class="profile-title">{{ username }}</h4>
+    <div class="iconbadge">
+      <img
+        src="/assets/icon/person.svg"
+        alt="Account Icon"
+        width="38px"
+        height="38px"
+      />
+      <h4 class="profile-name">{{ username }}</h4>
+    </div>
+    <!-- Only show if the user that is logged in is the user displayed on screen -->
+    <div>
+      <button type="button" class="btn btn-primary" (click)="goToEditProfile()">
+        Edit Profile
+      </button>
+    </div>
   </div>
-  <!-- only show if user is logged in -->
 </div>
