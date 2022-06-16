@@ -6,7 +6,7 @@ import { User } from '../models/user.model';
 
 export let mockProjects: Project[] = [
   {
-    id: 1,
+    projectId: 1,
     title: 'Music project',
     description: 'Description of music project',
     theme: 'rock music',
@@ -18,7 +18,7 @@ export let mockProjects: Project[] = [
     progress: 'Founding',
   },
   {
-    id: 2,
+    projectId: 2,
     title: 'Programming project',
     description: 'Description of music project',
     theme: 'computer store',
@@ -30,7 +30,7 @@ export let mockProjects: Project[] = [
     progress: 'In progress',
   },
   {
-    id: 3,
+    projectId: 3,
     title: 'Film project',
     description: 'Description of film project',
     theme: 'horror movie',
@@ -42,7 +42,7 @@ export let mockProjects: Project[] = [
     progress: 'Stalled',
   },
   {
-    id: 4,
+    projectId: 4,
     title: 'Game project',
     description: 'Description of game project',
     theme: 'Strategy, RPG',
@@ -57,7 +57,7 @@ export let mockProjects: Project[] = [
 
 export let mockUsers: User[] = [
   {
-    id: 1,
+    userId: 1,
     name: 'Pim',
     password: 'password',
     email: 'pim@gmail.com',
@@ -68,7 +68,7 @@ export let mockUsers: User[] = [
     projects: [2, 3],
   },
   {
-    id: 2,
+    userId: 2,
     name: 'Leroy',
     password: 'password',
     email: 'leroy@gmail.com',
@@ -79,7 +79,7 @@ export let mockUsers: User[] = [
     projects: [1, 2],
   },
   {
-    id: 3,
+    userId: 3,
     name: 'Victor',
     password: 'password',
     email: 'victor@gmail.com',
@@ -90,7 +90,7 @@ export let mockUsers: User[] = [
     projects: [1, 2],
   },
   {
-    id: 4,
+    userId: 4,
     name: 'Dorine',
     password: 'password',
     email: 'dorine@gmail.com',

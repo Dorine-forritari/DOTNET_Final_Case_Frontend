@@ -8,8 +8,6 @@ import { mockSkills } from '../data/mock-data';
 
 const { mockProjectApiUrl, projectsApiUrl } = environment;
 
-// const testURL = 'https://cors-anywhere.herokuapp.com/';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -47,8 +45,7 @@ export class CatalogueService implements OnInit {
   public fetchCatalogue(): void {
     this.http.get<ProjectResponse[]>(projectsApiUrl).subscribe({
       next: (response: any) => {
-        console.log(response);
-
+        // The following line is for turning the skill ID to skill names
         // this.getSkillNames(response);
         this._projects = response.map((project: Project) => {
           return {

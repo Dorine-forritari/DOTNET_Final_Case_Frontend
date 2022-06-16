@@ -1,7 +1,7 @@
 import { Skill } from './skill.model';
 
 export interface Project {
-  id: number;
+  projectId: number;
   title: string;
   description: string;
   theme: string;

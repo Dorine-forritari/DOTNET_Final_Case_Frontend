@@ -1,7 +1,12 @@
-.btn-primary{
-    float: right;
+.container {
     margin-top: 1em;
 }
-h1, h2{
-    display: inline;
+
+.sub-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-primary {
+    margin-top: 1.5em;
 }

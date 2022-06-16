@@ -12,12 +12,13 @@ import { DOCUMENT } from '@angular/common';
 export class LogoutButtonComponent implements OnInit {
   constructor(
     public auth: AuthService,
-    @Inject(DOCUMENT) private doc: Document,
+    @Inject(DOCUMENT) private doc: Document
   ) {}
 
   ngOnInit(): void {}
 
   logout(): void {
+    sessionStorage.removeItem('user');
     this.auth.logout({ returnTo: this.doc.location.origin });
   }
 }

@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
@@ -14,9 +15,19 @@ export class ProjectHeaderComponent implements OnInit {
   selectedIndustry: string | undefined;
   icon: string | undefined;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
+    this.setProjectIcon();
+    this.checkUserLoggedIn();
+  }
+
+  checkUserLoggedIn() {
+    console.log(this.userService.user);
+    // if ()
+  }
+
+  setProjectIcon() {
     this.selectedProject = JSON.parse(
       sessionStorage.getItem('project') || '{}'
     );
@@ -38,7 +49,7 @@ export class ProjectHeaderComponent implements OnInit {
   // Update a project. This is only for the user administrator
   goToProjectAdministration() {
     this.router.navigate([
-      `project/${this.selectedProject?.id}/administration`,
+      `project/${this.selectedProject?.projectId}/administration`,
     ]);
   }
 }

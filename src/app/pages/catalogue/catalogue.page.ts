@@ -16,21 +16,19 @@ export class CataloguePage implements OnInit {
 
   constructor(
     private catalogueService: CatalogueService,
-    private userService: UserService,
-    public auth: AuthService
+    public auth: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(async (profile) => {
-      console.log(profile?.email);
+    console.log(this.userService.user);
 
-      const email = 'leroy.finalcase@hotmail.com';
-      // REPLACE: email -> profile?.email
-      // this.userService.fetchUsersBasedOnEmail();
-
-      await sessionStorage.setItem('authUser', JSON.stringify(profile));
+    this.auth.user$.subscribe((profile) => {
+      if (profile !== null) {
+        // sessionStorage.setItem('userEmail', JSON.stringify(profile?.email));
+        this.userService.fetchUserBasedOnEmail(profile?.email);
+      }
     });
-
     this.catalogueService.fetchCatalogue();
   }
 }

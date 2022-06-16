@@ -1,3 +1,4 @@
+import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
 import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
 import { ProjectComponent } from './components/project/project.component';
 import { ProjectPage } from './pages/project/project.page';
@@ -22,12 +23,16 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfilePage,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
   },
   {
     path: 'profile-edit',
     component: ProfileEditPage,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile-setup',
+    component: ProfileSetupPage,
   },
   {
     path: 'search/:searchInput',
@@ -41,12 +46,10 @@ const routes: Routes = [
   {
     path: 'catalogue',
     component: CataloguePage,
-    canActivate: [AuthGuard]
   },
   {
     path: 'project/:id',
     component: ProjectPage,
-    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -59,6 +62,7 @@ const routes: Routes = [
       },
       {
         path: 'administration',
+        canActivate: [AuthGuard],
         component: ProjectAdministrationComponent,
       },
     ],
@@ -69,4 +73,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

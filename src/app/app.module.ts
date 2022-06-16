@@ -29,6 +29,8 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
+import { ProfileSetupComponent } from './components/profile-setup/profile-setup.component';
+import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { AuthenticationButtonComponent } from './components/authentication-butto
     AuthenticationButtonComponent,
 
     ProjectImagesCarouselComponent,
+      ProfileSetupComponent,
+      ProfileSetupPage,
   ],
   imports: [
     BrowserModule,
