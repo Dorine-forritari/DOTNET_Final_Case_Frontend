@@ -31,6 +31,7 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 import { ProfileSetupComponent } from './components/profile-setup/profile-setup.component';
 import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
+import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
     ProjectImagesCarouselComponent,
       ProfileSetupComponent,
       ProfileSetupPage,
+      ProfileHeaderComponent,
   ],
   imports: [
     BrowserModule,

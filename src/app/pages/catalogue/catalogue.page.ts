@@ -21,11 +21,8 @@ export class CataloguePage implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.userService.user);
-
     this.auth.user$.subscribe((profile) => {
       if (profile !== null) {
-        // sessionStorage.setItem('userEmail', JSON.stringify(profile?.email));
         this.userService.fetchUserBasedOnEmail(profile?.email);
       }
     });

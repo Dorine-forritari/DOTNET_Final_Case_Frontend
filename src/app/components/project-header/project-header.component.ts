@@ -14,6 +14,7 @@ export class ProjectHeaderComponent implements OnInit {
   selectedProject: Project | undefined;
   selectedIndustry: string | undefined;
   icon: string | undefined;
+  loggedIn: boolean = false;
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -23,8 +24,11 @@ export class ProjectHeaderComponent implements OnInit {
   }
 
   checkUserLoggedIn() {
-    console.log(this.userService.user);
-    // if ()
+    if (this.userService.user !== undefined) {
+      this.loggedIn = true;
+    } else {
+      this.loggedIn = false;
+    }
   }
 
   setProjectIcon() {

@@ -51,7 +51,7 @@ export class UserService {
     });
   }
 
-  // Fetch all users
+  // Fetch user with OAuth login
   public fetchUserBasedOnEmail(email: string | undefined): void {
     this.http.get<User[]>(usersApiUrl).subscribe({
       next: (response) => {
