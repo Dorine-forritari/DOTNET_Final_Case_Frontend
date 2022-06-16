@@ -1,6 +1,8 @@
+import { UserService } from './../../services/user.service';
 import { Project } from './../../models/project.model';
 import { Component, OnInit } from '@angular/core';
 import { CatalogueService } from 'src/app/services/catalogue.service';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-catalogue=page',
@@ -12,9 +14,18 @@ export class CataloguePage implements OnInit {
     return this.catalogueService.projects;
   }
 
-  constructor(private catalogueService: CatalogueService) {}
+  constructor(
+    private catalogueService: CatalogueService,
+    public auth: AuthService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
+    this.auth.user$.subscribe((profile) => {
+      if (profile !== null) {
+        this.userService.fetchUserBasedOnEmail(profile?.email);
+      }
+    });
     this.catalogueService.fetchCatalogue();
   }
 }

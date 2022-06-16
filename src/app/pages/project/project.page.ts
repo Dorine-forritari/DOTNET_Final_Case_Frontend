@@ -23,7 +23,7 @@ export class ProjectPage implements OnInit {
     console.log(projectId);
 
     const foundProject = this.projects.find((element) => {
-      return element.id === Number(projectId);
+      return element.projectId === Number(projectId);
     });
     console.log(foundProject);
 

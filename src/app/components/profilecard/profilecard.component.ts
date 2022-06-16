@@ -9,28 +9,29 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./profilecard.component.scss'],
 })
 export class ProfilecardComponent implements OnInit {
-  //TODO!!! logged in user should not be nr 0 in mockuser array
-  @Input() loggedInUser: User = mockUsers[1];
+  // TODO!!! logged in user should not be nr 0 in mockuser array
+  loggedInUser: User;
   @Input() loggedInUserSkills: Skill[];
-  //TODO!!! all skills should come from API
+  // TODO!!! all skills should come from API
   allSkills: Skill[] = mockSkills;
 
   constructor() {
     this.loggedInUserSkills = [];
     //get the skill names of the logged in user
-    this.getSkillNames();
+    // this.getSkillNames();
+    this.loggedInUser = JSON.parse(sessionStorage.getItem('user') || '{}');
   }
 
-  getSkillNames(): void {
-    for (let i = 0; i < this.loggedInUser.skills.length; i++) {
-      for (let j = 0; j < this.allSkills.length; j++) {
-        if (this.loggedInUser.skills[i] == this.allSkills[j].id) {
-          this.loggedInUserSkills.push(this.allSkills[j]);
-          break;
-        }
-      }
-    }
-  }
+  // getSkillNames(): void {
+  //   for (let i = 0; i < this.loggedInUser.skills.length; i++) {
+  //     for (let j = 0; j < this.allSkills.length; j++) {
+  //       if (this.loggedInUser.skills[i] == this.allSkills[j].id) {
+  //         this.loggedInUserSkills.push(this.allSkills[j]);
+  //         break;
+  //       }
+  //     }
+  //   }
+  // }
 
   ngOnInit(): void {}
 }

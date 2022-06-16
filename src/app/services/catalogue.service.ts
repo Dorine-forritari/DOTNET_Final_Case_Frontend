@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '@auth0/auth0-angular';
+import { Injectable, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
 import { Skill } from '../models/skill.model';
 import { mockSkills } from '../data/mock-data';
 
-const { mockProjectApiUrl } = environment;
+const { mockProjectApiUrl, projectsApiUrl } = environment;
 
 @Injectable({
   providedIn: 'root',
 })
-export class CatalogueService {
+export class CatalogueService implements OnInit {
   private _projects: Project[] = [];
   private _selectedProject: Project | undefined;
   // //TODO!!! all skills should come from API
@@ -32,13 +33,20 @@ export class CatalogueService {
     this._projects = projectList;
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public auth: AuthService) {}
+
+  ngOnInit() {
+    this.auth.user$.subscribe((profile) =>
+      sessionStorage.setItem('user', JSON.stringify(profile, null, 2))
+    );
+  }
 
   // Fetch whole catalogue
   public fetchCatalogue(): void {
-    this.http.get<ProjectResponse[]>(mockProjectApiUrl).subscribe({
+    this.http.get<ProjectResponse[]>(projectsApiUrl).subscribe({
       next: (response: any) => {
-        this.getSkillNames(response);
+        // The following line is for turning the skill ID to skill names
+        // this.getSkillNames(response);
         this._projects = response.map((project: Project) => {
           return {
             ...project,

@@ -2,7 +2,7 @@ import { Project } from './project.model';
 import { Skill } from './skill.model';
 
 export interface User {
-  id: number;
+  userId: number;
   name: string;
   password: string;
   email: string;

@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainPage } from './pages/main/main.page';
 import { CatalogueComponent } from './components/catalogue/catalogue.component';
 import { ProfilePage } from './pages/profile/profile.page';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -30,11 +29,13 @@ import { LoginButtonComponent } from './components/login-button/login-button.com
 import { SignupButtonComponent } from './components/signup-button/signup-button.component';
 import { LogoutButtonComponent } from './components/logout-button/logout-button.component';
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
+import { ProfileSetupComponent } from './components/profile-setup/profile-setup.component';
+import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
+import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { SeeOtherUserProfileComponent } from './components/see-other-user-profile/see-other-user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MainPage,
     CatalogueComponent,
     ProfilePage,
     NavbarComponent,
@@ -55,7 +56,10 @@ import { SeeOtherUserProfileComponent } from './components/see-other-user-profil
     AuthenticationButtonComponent,
 
     ProjectImagesCarouselComponent,
-          SeeOtherUserProfileComponent,
+    ProfileSetupComponent,
+    ProfileSetupPage,
+    ProfileHeaderComponent,
+    SeeOtherUserProfileComponent,
   ],
   imports: [
     BrowserModule,
