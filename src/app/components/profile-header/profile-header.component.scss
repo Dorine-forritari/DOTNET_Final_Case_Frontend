@@ -1,8 +1,13 @@
 .profile-header {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
 }
 
-.profile-title {
+.iconbadge {
+    display: flex;
+    align-items: center;
+}
+
+.profile-name {
     margin-left: 0.5em;
 }

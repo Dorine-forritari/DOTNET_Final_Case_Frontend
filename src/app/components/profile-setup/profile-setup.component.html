@@ -1,18 +1,96 @@
 <div class="container">
-  <form action="">
-    <h1>TEST</h1>
+  <form #createUserForm="ngForm" (ngSubmit)="onSubmit(createUserForm)">
     <div class="input-group input-group-sm mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="theme">Email:</span>
+        <span class="input-group-text" id="email">Email:</span>
       </div>
       <input
         type="text"
-        name="theme"
+        name="email"
         class="form-control"
         aria-label="small"
         aria-describedby="inputGroup-sizing-sm"
+        ngModel="{{ userEmail }}"
         readonly
       />
     </div>
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="name">Name:</span>
+      </div>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        aria-label="small"
+        aria-describedby="inputGroup-sizing-sm"
+        ngModel
+      />
+    </div>
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="portfolio">Portfolio:</span>
+      </div>
+      <input
+        type="text"
+        name="portfolio"
+        class="form-control"
+        aria-label="small"
+        aria-describedby="inputGroup-sizing-sm"
+        ngModel
+      />
+    </div>
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="description">Description:</span>
+      </div>
+      <input
+        type="text"
+        name="description"
+        class="form-control"
+        aria-label="small"
+        aria-describedby="inputGroup-sizing-sm"
+        ngModel
+      />
+    </div>
+    <hr class="divider" />
+    <div>
+      <p>Please select if you want other users to see your profile.</p>
+    </div>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label class="btn btn-secondary active">
+        <input
+          type="radio"
+          name="hidden"
+          id="option1"
+          value="false"
+          autocomplete="off"
+          [(ngModel)]="hidden"
+        />
+        Unhidden
+      </label>
+      <label class="btn btn-secondary">
+        <input
+          type="radio"
+          name="hidden"
+          id="option2"
+          value="true"
+          autocomplete="off"
+          [(ngModel)]="hidden"
+        />
+        Hidden
+      </label>
+    </div>
+    <p *ngIf="showRequiredFields === true" style="color: red">
+      This is a required field
+    </p>
+    <hr class="divider" />
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="createUserForm.form.invalid"
+    >
+      Save
+    </button>
   </form>
 </div>
