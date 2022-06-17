@@ -1,3 +1,4 @@
+import { NewProjectComponent } from './components/new-project/new-project.component';
 import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
 import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
 import { ProjectComponent } from './components/project/project.component';
@@ -41,7 +42,7 @@ const routes: Routes = [
   {
     path: 'search',
     pathMatch: 'full',
-    redirectTo: '/main',
+    redirectTo: '/catalogue',
   },
   {
     path: 'catalogue',
@@ -66,6 +67,11 @@ const routes: Routes = [
         component: ProjectAdministrationComponent,
       },
     ],
+  },
+  {
+    path: 'new-project',
+    // canActivate: [AuthGuard],
+    component: NewProjectComponent,
   },
 ];
 

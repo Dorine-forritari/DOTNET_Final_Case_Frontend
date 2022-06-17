@@ -19,6 +19,8 @@ export class ProjectPage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.paramMap.get('id'));
+
     const projectId = this.route.snapshot.paramMap.get('id');
     console.log(projectId);
 
