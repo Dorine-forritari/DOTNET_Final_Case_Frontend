@@ -1,10 +1,10 @@
-import { LiteralExpr } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { mockSkills, mockUsers } from 'src/app/data/mock-data';
 import { Skill } from 'src/app/models/skill.model';
 import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profilecard-edit',
@@ -22,7 +22,7 @@ export class ProfilecardEditComponent implements OnInit {
 
   hidden: string = '';
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
     this.loggedInUserSkills = [];
     //get the skill names of the logged in user
     this.getSkillNames();
@@ -81,16 +81,16 @@ export class ProfilecardEditComponent implements OnInit {
     console.log(e.target.value);
     if (e.target.value === 'hidden') {
       this.loggedInUser.hidden = true;
-      console.log("Hidden is now: " + this.loggedInUser.hidden);
+      console.log('Hidden is now: ' + this.loggedInUser.hidden);
     } else {
       this.loggedInUser.hidden = false;
-      console.log("Hidden is now: " + this.loggedInUser.hidden);
+      console.log('Hidden is now: ' + this.loggedInUser.hidden);
     }
   }
 
-  AddSkillToUser(value : string){
-    for(let i = 0; i < this.remainingSkills.length; i++){
-      if(value === this.remainingSkills[i].name){
+  AddSkillToUser(value: string) {
+    for (let i = 0; i < this.remainingSkills.length; i++) {
+      if (value === this.remainingSkills[i].name) {
         this.loggedInUser.skills.push(this.remainingSkills[i].id);
         this.RemoveElementFromArray(i);
         this.refreshComponent();
@@ -103,6 +103,16 @@ export class ProfilecardEditComponent implements OnInit {
     this.loggedInUser.portfolio = form.value.portfolio;
     this.loggedInUser.description = form.value.description;
     this.loggedInUser.name = form.value.name;
+    console.log(this.loggedInUser);
+    this.userService
+      .updateUser(this.loggedInUser.userId, this.loggedInUser)
+      .subscribe({
+        next: (user: User) => {
+          this.userService.user = user;
+        },
+        error: () => {},
+        complete: () => {},
+      });
   }
 
   ngOnInit(): void {}

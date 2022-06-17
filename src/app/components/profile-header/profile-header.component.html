@@ -10,7 +10,7 @@
       <h4 class="profile-name">{{ username }}</h4>
     </div>
     <!-- Only show if the user that is logged in is the user displayed on screen -->
-    <div>
+    <div *ngIf="loggedIn === true">
       <button type="button" class="btn btn-primary" (click)="goToEditProfile()">
         Edit Profile
       </button>
