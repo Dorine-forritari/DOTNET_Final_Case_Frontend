@@ -116,4 +116,8 @@ export class ProfilecardEditComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  goToProfile() {
+    this.router.navigate(['profile']);
+  }
 }

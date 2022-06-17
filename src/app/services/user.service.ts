@@ -96,9 +96,10 @@ export class UserService {
       'x-api-key': apiKey,
     });
 
-    return this.http.post<User>(
+    return this.http.put<User>(
       usersApiUrl + '/' + userId,
       {
+        userId: user.userId,
         name: user.name,
         email: user.email,
         portfolio: user.portfolio,
@@ -116,6 +117,6 @@ export class UserService {
       'x-api-key': apiKey,
     });
 
-    return this.http.patch<User>(usersApiUrl, user, { headers });
+    return this.http.post<User>(usersApiUrl, user, { headers });
   }
 }
