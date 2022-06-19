@@ -17,16 +17,8 @@ export class ProjectHeaderComponent implements OnInit {
   constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
+    this.loggedIn = this.userService.checkUserIsLoggedIn();
     this.setProjectIcon();
-    this.checkUserLoggedIn();
-  }
-
-  checkUserLoggedIn() {
-    if (this.userService.user !== undefined) {
-      this.loggedIn = true;
-    } else {
-      this.loggedIn = false;
-    }
   }
 
   setProjectIcon() {

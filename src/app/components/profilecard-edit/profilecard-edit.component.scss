@@ -1,21 +1,26 @@
-.btn-success{
+.btn-success {
     float: right;
     margin-bottom: 1em;
     margin-right: 1em;
 }
 
-.btn-danger{
+.btn-danger {
     float: right;
     margin-right: 1em;
 }
 
-.rounded{
+.rounded {
     margin: auto;
     margin-bottom: 1em;
     left: 50%;
     width: 98%;
 }
 
-.container{
+.container {
     margin-top: 1em;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
 }
