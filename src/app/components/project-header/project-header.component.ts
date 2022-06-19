@@ -54,4 +54,9 @@ export class ProjectHeaderComponent implements OnInit {
       `project/${this.selectedProject?.projectId}/administration`,
     ]);
   }
+
+  joinProject()
+  {
+    
+  }
 }
