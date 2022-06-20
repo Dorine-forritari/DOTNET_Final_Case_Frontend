@@ -50,21 +50,23 @@ export class ProjectHeaderComponent implements OnInit {
     ]);
   }
 
-  // Function to join project
-  joinProject(project: Project[])
+  // Function to join a project
+  joinProject()
   {
+    // Undefined values set to a number
+    const projectId: number = this.selectedProject?.projectId!
+
     if(!this.userService.user){
       return;
     }
-    this.joinProjectService.join(this.userService.user.userId, [...this.userService.user.projects, project])
+    this.joinProjectService.join(this.userService.user.userId, projectId)
     .subscribe({
-      next: (user: User) => {
-        this.userService.
+      next: (response) => {
+        console.log(response);
       },
-
-      complete: () => {
-      }
-    })
+      error: () => {},
+      complete: () => {},
+    });
 
   }
 }
