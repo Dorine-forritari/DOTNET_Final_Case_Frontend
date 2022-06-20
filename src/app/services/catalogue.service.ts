@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
 import { Skill } from '../models/skill.model';
-import { mockSkills } from '../data/mock-data';
 import { lastValueFrom } from 'rxjs';
 import { SkillProject } from '../models/skillproject.model';
 
