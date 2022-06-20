@@ -12,6 +12,7 @@ export const environment = {
   usersApiUrl: 'https://finalcase.azurewebsites.net/api/users',
   messagesApiUrl: 'https://finalcase.azurewebsites.net/api/messages',
   projectsApiUrl: 'https://finalcase.azurewebsites.net/api/projects',
+  projectUserApiUrl: 'https://finalcase.azurewebsites.net/api/projectusers',
   skillProjectsApiUrl: 'https://finalcase.azurewebsites.net/api/skillprojects',
   skillsApiUrl: 'https://finalcase.azurewebsites.net/api/skills',
   apiKey: '',
