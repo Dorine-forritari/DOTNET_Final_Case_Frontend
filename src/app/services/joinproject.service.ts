@@ -22,9 +22,21 @@ export class JoinprojectService {
       "content-type": "application/json",
       "x-api-key": apiKey,
     })
-       
+
     // Post method to join a project
     return this.http.post<User>(projectuserApiUrl + "/?projectId=" + projectId + "&userId=" + userId + "&owner=false",{headers})
   }
+
+  // checkAlreadyJoined(){
+
+  //   this.http.get<UserResponse[]>(usersApiUrl + '/' + userId).subscribe({
+  //     next: (response) => {
+  //       console.log(response);
+  //     },
+  //     error: () => {},
+  //     complete: () => {},
+  //   });
+
+  // }
 
 }
