@@ -51,17 +51,19 @@ export class ProjectHeaderComponent implements OnInit {
   }
 
   // Function to join a project
-  joinProject()
+  public async joinProject()
   {
 
     // Undefined values set to a number
     const projectId: number = this.selectedProject?.projectId!
+  
 
     if(!this.userService.user){
       return;
     }
 
-    if(this.userService.user.userId === this.userService.user.userId && projectId === projectId)
+    const projectAlreadyJoined = await this.joinProjectService.checkAlreadyJoined(this.userService.user.userId, projectId)
+    if(projectAlreadyJoined)
     {
       alert("No 😥 you have already joined this project.");
     }
