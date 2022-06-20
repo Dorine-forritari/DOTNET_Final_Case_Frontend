@@ -14,6 +14,8 @@ const { mockProjectApiUrl, projectsApiUrl } = environment;
 export class CatalogueService implements OnInit {
   private _projects: Project[] = [];
   private _selectedProject: Project | undefined;
+  // projectsForCatalogue is used for Industry Switching on Catalogue Page
+  public projectsForCatalogue: Project[] = [];
   // //TODO!!! all skills should come from API
   allSkills: Skill[] = mockSkills;
 
@@ -52,6 +54,7 @@ export class CatalogueService implements OnInit {
             ...project,
           };
         });
+        this.projectsForCatalogue = this._projects;
       },
       error: () => {},
       complete: () => {},
