@@ -4,9 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Project, ProjectResponse } from '../models/project.model';
 import { environment } from './../../environments/environment';
 import { Skill } from '../models/skill.model';
-import { mockSkills } from '../data/mock-data';
+import { lastValueFrom } from 'rxjs';
+import { SkillProject } from '../models/skillproject.model';
 
-const { mockProjectApiUrl, projectsApiUrl } = environment;
+const { mockProjectApiUrl, projectsApiUrl, skillProjectsApiUrl, skillsApiUrl } = environment;
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +15,9 @@ const { mockProjectApiUrl, projectsApiUrl } = environment;
 export class CatalogueService implements OnInit {
   private _projects: Project[] = [];
   private _selectedProject: Project | undefined;
+
   // projectsForCatalogue is used for Industry Switching on Catalogue Page
   public projectsForCatalogue: Project[] = [];
-  // //TODO!!! all skills should come from API
-  allSkills: Skill[] = mockSkills;
 
   get selectedProject(): Project | undefined {
     return this._selectedProject;
@@ -47,14 +47,15 @@ export class CatalogueService implements OnInit {
   public fetchCatalogue(): void {
     this.http.get<ProjectResponse[]>(projectsApiUrl).subscribe({
       next: (response: any) => {
-        // The following line is for turning the skill ID to skill names
-        // this.getSkillNames(response);
         this._projects = response.map((project: Project) => {
           return {
             ...project,
           };
         });
-        this.projectsForCatalogue = this._projects;
+        // Fetch skills for each project
+        for (let i = 0; i < this._projects.length; i++) {
+          this.fetchSkillsByProject(this._projects[i].projectId);
+        }
       },
       error: () => {},
       complete: () => {},
@@ -66,7 +67,7 @@ export class CatalogueService implements OnInit {
     this.http
       .get<ProjectResponse[]>(mockProjectApiUrl + '/' + projectId)
       .subscribe({
-        next: (response) => {
+        next: (response: any) => {
           console.log(response);
         },
         error: () => {},
@@ -74,19 +75,33 @@ export class CatalogueService implements OnInit {
       });
   }
 
-  getSkillNames(projects: Project[]): void {
-    projects.map((project: { skills: string[] }) => {
-      for (let i = 0; i < project.skills.length; i++) {
-        const found = this.allSkills.find(
-          (e) => e.id === Number(project.skills[i])
-        );
-        if (found === undefined) {
-          throw new Error('Project is undefined');
-        } else {
-          project.skills.splice(i, 1, found.name);
-        }
+  // fetch all skillProject objects for a certain project
+  public getSkillProjects(projectId: number) {
+    return lastValueFrom(this.http.get<SkillProject[]>(skillProjectsApiUrl + '/'+ projectId));
+  }
+
+  // fetch a skill by skillId
+  public getSkill(skillId: number) {
+    return lastValueFrom(this.http.get<Skill>(skillsApiUrl + '/'+ skillId));
+  }
+
+  // Add skill names to a project
+  public async fetchSkillsByProject(projectId: number): Promise<void> {
+    // first get the skillProject objects
+    const skillProjects = await this.getSkillProjects(projectId);
+    const skillNames = [];
+    // For every skillProject object, fetch the skill and push the skill.name to an array
+    for (let i = 0; i < skillProjects.length; i++) {
+      let skill = await this.getSkill(skillProjects[i].skillId);
+      skillNames.push(skill.name);
+    }
+    // Find the project in this._projects and add the skill names
+    for (let i = 0; i < this._projects.length; i++) {
+      if (this._projects[i].projectId === projectId) {
+        this._projects[i].skills = skillNames;
       }
-    });
-    this._projects = this.projects;
+    }
+    // After skills have been added, bring projectsForCatalogue up to date with _projects
+    this.projectsForCatalogue = this._projects;
   }
 }
