@@ -53,12 +53,20 @@ export class ProjectHeaderComponent implements OnInit {
   // Function to join a project
   joinProject()
   {
+
     // Undefined values set to a number
     const projectId: number = this.selectedProject?.projectId!
 
     if(!this.userService.user){
       return;
     }
+    
+    // if(this.userService.user.userId === this.userService.user.userId && projectId === projectId)
+    // {
+    //   alert("No!!! 😥 you have already joined this project.");
+    // }
+    else {
+    if(this.userService.user.userId)
     this.joinProjectService.join(this.userService.user.userId, projectId)
     .subscribe({
       next: (response) => {
@@ -66,7 +74,9 @@ export class ProjectHeaderComponent implements OnInit {
       },
       error: () => {},
       complete: () => {},
-    });
+    })
 
+    alert("Yes!!! 😁 you have joined this project.");
+  }
   }
 }
