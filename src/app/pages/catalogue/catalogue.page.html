@@ -1,11 +1,44 @@
 <div class="container">
   <div class="container-header">
     <h1 class="title">Projects</h1>
-    <input type="checkbox" [(ngModel)]="filter.music" (ngModelChange)="filterProjects()" /> music
-    <input type="checkbox" [(ngModel)]="filter.film" (ngModelChange)="filterProjects()" /> film
-    <input type="checkbox" [(ngModel)]="filter.gamedevelopment" (ngModelChange)="filterProjects()" /> web development
-    <input type="checkbox" [(ngModel)]="filter.webdevelopment" (ngModelChange)="filterProjects()" /> game development
+    <div>
+      <input
+        class="checkbox"
+        type="checkbox"
+        [(ngModel)]="filter.music"
+        (ngModelChange)="filterProjects()"
+      />
+      <label for="music">Music</label>
+    </div>
+    <div>
+      <input
+        class="checkbox"
+        type="checkbox"
+        [(ngModel)]="filter.film"
+        (ngModelChange)="filterProjects()"
+      />
+      <label for="film">Film</label>
+    </div>
+    <div>
+      <input
+        class="checkbox"
+        type="checkbox"
+        [(ngModel)]="filter.gamedevelopment"
+        (ngModelChange)="filterProjects()"
+      />
+      <label for="gamedev">Gamedevelopment</label>
+    </div>
+    <div>
+      <input
+        class="checkbox"
+        type="checkbox"
+        [(ngModel)]="filter.webdevelopment"
+        (ngModelChange)="filterProjects()"
+      />
+      <label for="webdev">Webdevelopment</label>
+    </div>
     <app-searchbar></app-searchbar>
+    <button class="btn btn-success" (click)="newProject()">New project</button>
   </div>
   <app-catalogue [projects]="projectsForCatalogue"></app-catalogue>
 </div>
