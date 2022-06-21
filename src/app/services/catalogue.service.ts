@@ -7,8 +7,13 @@ import { Skill } from '../models/skill.model';
 import { lastValueFrom } from 'rxjs';
 import { SkillProject } from '../models/skillproject.model';
 
-const { projectsApiUrl, skillProjectsApiUrl, skillsApiUrl, apiKey } =
-  environment;
+const {
+  projectsApiUrl,
+  skillProjectsApiUrl,
+  skillsApiUrl,
+  usersApiUrl,
+  apiKey,
+} = environment;
 
 @Injectable({
   providedIn: 'root',
