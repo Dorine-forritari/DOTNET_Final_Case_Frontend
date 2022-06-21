@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { mockSkills, mockUsers } from 'src/app/data/mock-data';
 import { Skill } from 'src/app/models/skill.model';
 import { User } from 'src/app/models/user.model';
+import { SkillService } from 'src/app/services/skill.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,19 +15,30 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfilecardEditComponent implements OnInit {
   //userId : number;
   //TODO!!! logged in user should not be nr 0 in mockuser array
-  @Input() loggedInUser: User = mockUsers[1];
-  @Input() loggedInUserSkills: Skill[];
+  // @Input() loggedInUser: User = mockUsers[1];
+  @Input() loggedInUser: User = this.userService.user!;
+  // @Input() loggedInUserSkills: Skill[];
+  @Input() loggedInUserSkills: Skill[] = [];
   //TODO!!! all skills should come from API
   allSkills: Skill[] = mockSkills;
   @Input() remainingSkills: Skill[] = mockSkills;
 
   hidden: string = '';
 
-  constructor(private router: Router, private userService: UserService) {
-    this.loggedInUserSkills = [];
-    //get the skill names of the logged in user
-    this.getSkillNames();
-    this.SetRadioButton();
+  get skills(): Skill[] {
+    return this.skillService.skills;
+  }
+
+  constructor(private router: Router, private userService: UserService, private skillService: SkillService) {
+    // this.loggedInUserSkills = [];
+    // //get the skill names of the logged in user
+    // this.getSkillNames();
+    // this.SetRadioButton();
+    
+  }
+
+  ngOnInit(): void {
+    this.skillService.fetchAllSkills();
   }
 
   getSkillNames(): void {
@@ -88,16 +100,27 @@ export class ProfilecardEditComponent implements OnInit {
     }
   }
 
-  AddSkillToUser(value: string) {
-    for (let i = 0; i < this.remainingSkills.length; i++) {
-      if (value === this.remainingSkills[i].name) {
-        this.loggedInUser.skills.push(this.remainingSkills[i].id);
-        this.RemoveElementFromArray(i);
+  // AddSkillToUser(value: string) {
+  //   for (let i = 0; i < this.remainingSkills.length; i++) {
+  //     if (value === this.remainingSkills[i].name) {
+  //       this.loggedInUser.skills.push(this.remainingSkills[i].id);
+  //       this.RemoveElementFromArray(i);
+  //       this.refreshComponent();
+  //       break;
+  //     }
+  //   }
+  // }
+  public async AddSkillToUser(value: string) {
+    for (let i = 0; i < this.skills.length; i++) {
+      if (value === this.skills[i].name) {
+        await this.skillService.addSkillUser(this.skills[i].id, this.userService.user!.userId);
+        this.skillService.fetchAllSkills();
         this.refreshComponent();
         break;
       }
     }
   }
+
 
   public onStartSubmit(form: NgForm) {
     this.loggedInUser.portfolio = form.value.portfolio;
@@ -115,7 +138,7 @@ export class ProfilecardEditComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {}
+ 
 
   goToProfile() {
     this.router.navigate(['profile']);
