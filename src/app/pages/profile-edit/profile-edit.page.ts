@@ -4,16 +4,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile-edit',
   templateUrl: './profile-edit.page.html',
-  styleUrls: ['./profile-edit.page.scss']
+  styleUrls: ['./profile-edit.page.scss'],
 })
 export class ProfileEditPage implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
-
-  goToProfile() {
-    this.router.navigate(['profile']);
-  }
+  ngOnInit(): void {}
 }

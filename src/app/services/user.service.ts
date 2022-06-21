@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { User, UserResponse } from '../models/user.model';
+import { Observable } from 'rxjs';
 
-const { usersApiUrl } = environment;
+const { usersApiUrl, apiKey } = environment;
 @Injectable({
   providedIn: 'root',
 })
@@ -36,15 +37,19 @@ export class UserService {
     }
   }
 
+  public checkUserIsLoggedIn(): boolean {
+    if (this.user !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Fetch all users
   public fetchAllUsers(): void {
     this.http.get<User[]>(usersApiUrl).subscribe({
       next: (response) => {
         console.log(response);
-        response.map((e: User) => {
-          // e.email
-          console.log(e.email);
-        });
       },
       error: () => {},
       complete: () => {},
@@ -55,15 +60,18 @@ export class UserService {
   public fetchUserBasedOnEmail(email: string | undefined): void {
     this.http.get<User[]>(usersApiUrl).subscribe({
       next: (response) => {
-        const foundUser = response.find((user) => {
+        response.find((user) => {
           if (user.email === email) {
-            return user;
+            console.log('found');
+            this.user = user;
           } else {
-            this.router.navigate(['profile-setup']);
-            return 'User not found';
+            console.log('not found');
           }
         });
-        sessionStorage.setItem('user', JSON.stringify(foundUser));
+        if (this.user === undefined) {
+          sessionStorage.setItem('email', JSON.stringify(email));
+          this.router.navigate(['profile-setup']);
+        }
       },
       error: () => {},
       complete: () => {},
@@ -79,5 +87,36 @@ export class UserService {
       error: () => {},
       complete: () => {},
     });
+  }
+
+  // Update a user
+  public updateUser(userId: number, user: User): Observable<User> {
+    const headers = new HttpHeaders({
+      'content-type': 'application/json',
+      'x-api-key': apiKey,
+    });
+
+    return this.http.put<User>(
+      usersApiUrl + '/' + userId,
+      {
+        userId: user.userId,
+        name: user.name,
+        email: user.email,
+        portfolio: user.portfolio,
+        description: user.description,
+        hidden: user.hidden,
+        skills: user.skills,
+      },
+      { headers }
+    );
+  }
+
+  public createUser(user: User): Observable<User> {
+    const headers = new HttpHeaders({
+      'content-type': 'application/json',
+      'x-api-key': apiKey,
+    });
+
+    return this.http.post<User>(usersApiUrl, user, { headers });
   }
 }

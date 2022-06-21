@@ -1,136 +1,136 @@
-<ul class="user-list">
-  <div class="card">
-    <div class="card-header">
-      <!-- icon for the field/industry?? -->
-      <h4 class="username">{{ loggedInUser.name }}</h4>
-    </div>
-    <div class="container">
-      <div class="user-info-container">
-        <div class="user-info">
-          <form #startForm="ngForm" (ngSubmit)="onStartSubmit(startForm)">
-            <fieldset>
-              <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="name">Name:</span>
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="name"
-                  ngModel="{{ loggedInUser.name }}"
-                  aria-label="Small"
-                  aria-describedby="inputGroup-sizing-sm"
-                  placeholder="{{ loggedInUser.name }}"
-                />
+<div class="card">
+  <div class="card-header">
+    <!-- icon for the field/industry?? -->
+    <h4 class="username">{{ loggedInUser.name }}</h4>
+    <button
+      type="button"
+      class="btn btn-primary btn-sm"
+      (click)="goToProfile()"
+    >
+      Return to Profile
+    </button>
+  </div>
+  <div class="container">
+    <div class="user-info-container">
+      <div class="user-info">
+        <form #startForm="ngForm" (ngSubmit)="onStartSubmit(startForm)">
+          <fieldset>
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="name">Name:</span>
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="portfolio"
-                    >Portfolio:</span
-                  >
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="portfolio"
-                  ngModel="{{ loggedInUser.portfolio }}"
-                  aria-label="Small"
-                  aria-describedby="inputGroup-sizing-sm"
-                  placeholder="{{ loggedInUser.portfolio }}"
-                />
-              </div>
-              <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="description"
-                    >Description:</span
-                  >
-                </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="description"
-                  ngModel="{{ loggedInUser.description }}"
-                  aria-label="Small"
-                  aria-describedby="inputGroup-sizing-sm"
-                  placeholder="{{ loggedInUser.description }}"
-                />
-              </div>
-              <button
-                type="submit"
-                class="btn btn-success"
-                [disabled]="startForm.invalid"
-              >
-                Save
-              </button>
-            </fieldset>
-          </form>
-          <hr class="rounded" />
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-secondary active">
               <input
-                type="radio"
-                name="options"
-                id="option1"
-                value="unhidden"
-                autocomplete="off"
-                [(ngModel)]="hidden"
-                (change)="changeHidden($event)"
+                type="text"
+                class="form-control"
+                name="name"
+                ngModel="{{ loggedInUser.name }}"
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{ loggedInUser.name }}"
               />
-              Unhidden
-            </label>
-            <label class="btn btn-secondary">
-              <input
-                type="radio"
-                name="options"
-                id="option2"
-                value="hidden"
-                autocomplete="off"
-                [(ngModel)]="hidden"
-                (change)="changeHidden($event)"
-              />
-              Hidden
-            </label>
-          </div>
-        </div>
-        <div class="user-skills">
-          <h5>Skills:</h5>
-          <ul>
-            <li *ngFor="let skill of loggedInUserSkills">
-              <p class="skills-item">
-                {{ skill.name }}
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  (click)="DeleteSkill(skill)"
-                >
-                  Delete
-                </button>
-              </p>
-            </li>
-          </ul>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01"
-                >Add skill</label
-              >
             </div>
-            <select
-              class="custom-select"
-              id="inputGroupSelect01"
-              #mySelect
-              (change)="AddSkillToUser(mySelect.value)"
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="portfolio">Portfolio:</span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                name="portfolio"
+                ngModel="{{ loggedInUser.portfolio }}"
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{ loggedInUser.portfolio }}"
+              />
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="description"
+                  >Description:</span
+                >
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                name="description"
+                ngModel="{{ loggedInUser.description }}"
+                aria-label="Small"
+                aria-describedby="inputGroup-sizing-sm"
+                placeholder="{{ loggedInUser.description }}"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="startForm.invalid"
             >
-              <option value="" disabled selected>Select a skill</option>
-              <option
-                *ngFor="let skill of remainingSkills"
-                [value]="skill.name"
+              Save
+            </button>
+          </fieldset>
+        </form>
+        <hr class="rounded" />
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input
+              type="radio"
+              name="options"
+              id="option1"
+              value="unhidden"
+              autocomplete="off"
+              [(ngModel)]="hidden"
+              (change)="changeHidden($event)"
+            />
+            Unhidden
+          </label>
+          <label class="btn btn-secondary">
+            <input
+              type="radio"
+              name="options"
+              id="option2"
+              value="hidden"
+              autocomplete="off"
+              [(ngModel)]="hidden"
+              (change)="changeHidden($event)"
+            />
+            Hidden
+          </label>
+        </div>
+      </div>
+      <div class="user-skills">
+        <h5>Skills:</h5>
+        <ul>
+          <li *ngFor="let skill of loggedInUserSkills">
+            <p class="skills-item">
+              {{ skill.name }}
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="DeleteSkill(skill)"
               >
-                {{ skill.name }}
-              </option>
-            </select>
+                Delete
+              </button>
+            </p>
+          </li>
+        </ul>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"
+              >Add skill</label
+            >
           </div>
+          <select
+            class="custom-select"
+            id="inputGroupSelect01"
+            #mySelect
+            (change)="AddSkillToUser(mySelect.value)"
+          >
+            <option value="" disabled selected>Select a skill</option>
+            <option *ngFor="let skill of remainingSkills" [value]="skill.name">
+              {{ skill.name }}
+            </option>
+          </select>
         </div>
       </div>
     </div>
   </div>
-</ul>
+</div>

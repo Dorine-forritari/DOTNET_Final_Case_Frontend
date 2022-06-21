@@ -27,7 +27,6 @@ export class ProjectAdministrationComponent implements OnInit {
   }
 
   setStatus(event: any) {
-    console.log(this.selectedProject);
     if (this.selectedProject?.progress === undefined) {
       throw new Error('Progress is undefined');
     }
@@ -40,13 +39,9 @@ export class ProjectAdministrationComponent implements OnInit {
   });
 
   changeStatus(e: any) {
-    console.log(e.target.value);
-
     this.status?.setValue(e.target.value, {
       onlySelf: true,
     });
-    console.log(this.statusForm.value);
-    console.log(this.status);
   }
 
   get status() {

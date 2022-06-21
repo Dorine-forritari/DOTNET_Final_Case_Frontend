@@ -10,8 +10,17 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./catalogue.page.scss'],
 })
 export class CataloguePage implements OnInit {
+  // On initializing the CataloguePage all Industry checkboxes are checked (projects of all industries are shown)
+  filter = { music: true, film: true, gamedevelopment: true, webdevelopment: true }
+
+  // List of all projects currently in database
   get projects(): Project[] {
     return this.catalogueService.projects;
+  }
+
+  // List of projects that changes based on filtering by Industry. 
+  get projectsForCatalogue(): Project[] {
+    return this.catalogueService.projectsForCatalogue;
   }
 
   constructor(
@@ -22,10 +31,22 @@ export class CataloguePage implements OnInit {
 
   ngOnInit(): void {
     this.auth.user$.subscribe((profile) => {
+      console.log(profile?.email);
       if (profile !== null) {
         this.userService.fetchUserBasedOnEmail(profile?.email);
       }
     });
     this.catalogueService.fetchCatalogue();
+  }
+
+  // Filters projects based on change events for the Industry check-boxes.
+  // The result is stored in 'projectsForCatalogue', so 'projects' always keeps the full list of projects.
+  filterProjects() {
+    this.catalogueService.projectsForCatalogue = this.projects.filter(x => 
+      (x.industry.toLowerCase() === 'music' && this.filter.music)
+      || (x.industry.toLowerCase() === 'film' && this.filter.film)
+      || (x.industry.toLowerCase() === 'game development' && this.filter.gamedevelopment)
+      || (x.industry.toLowerCase() === 'web development' && this.filter.webdevelopment)
+    );
   }
 }
