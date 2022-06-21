@@ -62,10 +62,9 @@ export class UserService {
       next: (response) => {
         response.find((user) => {
           if (user.email === email) {
-            console.log('found');
             this.user = user;
           } else {
-            console.log('not found');
+            throw new Error('User not found');
           }
         });
         if (this.user === undefined) {

@@ -33,6 +33,8 @@ import { ProfileSetupComponent } from './components/profile-setup/profile-setup.
 import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { SeeOtherUserProfileComponent } from './components/see-other-user-profile/see-other-user-profile.component';
+import { NewProjectComponent } from './components/new-project/new-project.component';
+import { NewProjectPage } from './pages/new-project/new-project.page';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +62,8 @@ import { SeeOtherUserProfileComponent } from './components/see-other-user-profil
     ProfileSetupPage,
     ProfileHeaderComponent,
     SeeOtherUserProfileComponent,
+    NewProjectComponent,
+    NewProjectPage,
   ],
   imports: [
     BrowserModule,

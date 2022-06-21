@@ -34,7 +34,7 @@ export class CatalogueProjectHeaderComponent implements OnInit {
       this.icon = 'globe';
     } else if (this.industry === 'music') {
       this.icon = 'music-note-beamed';
-    } else if (this.industry === 'movie') {
+    } else if (this.industry === 'film') {
       this.icon = 'camera-reels';
     } else if (this.industry === 'game development') {
       this.icon = 'joystick';
