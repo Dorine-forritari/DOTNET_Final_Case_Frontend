@@ -1,3 +1,4 @@
+import { NewProjectPage } from './pages/new-project/new-project.page';
 import { NewProjectComponent } from './components/new-project/new-project.component';
 import { ProfileSetupPage } from './pages/profile-setup/profile-setup.page';
 import { ProjectAdministrationComponent } from './components/project-administration/project-administration.component';
@@ -71,7 +72,7 @@ const routes: Routes = [
   {
     path: 'new-project',
     // canActivate: [AuthGuard],
-    component: NewProjectComponent,
+    component: NewProjectPage,
   },
 ];
 

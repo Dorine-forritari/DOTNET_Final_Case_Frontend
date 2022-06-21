@@ -38,7 +38,6 @@ export class CataloguePage implements OnInit {
 
   ngOnInit(): void {
     this.auth.user$.subscribe((profile) => {
-      console.log(profile?.email);
       if (profile !== null) {
         this.userService.fetchUserBasedOnEmail(profile?.email);
       }

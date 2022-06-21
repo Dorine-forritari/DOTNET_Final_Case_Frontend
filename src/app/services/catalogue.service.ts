@@ -7,7 +7,8 @@ import { Skill } from '../models/skill.model';
 import { lastValueFrom } from 'rxjs';
 import { SkillProject } from '../models/skillproject.model';
 
-const { mockProjectApiUrl, projectsApiUrl, skillProjectsApiUrl, skillsApiUrl } = environment;
+const { projectsApiUrl, skillProjectsApiUrl, skillsApiUrl, apiKey } =
+  environment;
 
 @Injectable({
   providedIn: 'root',
@@ -62,27 +63,16 @@ export class CatalogueService implements OnInit {
     });
   }
 
-  // Fetch single project based on ID
-  public fetchProject(projectId: number): void {
-    this.http
-      .get<ProjectResponse[]>(mockProjectApiUrl + '/' + projectId)
-      .subscribe({
-        next: (response: any) => {
-          console.log(response);
-        },
-        error: () => {},
-        complete: () => {},
-      });
-  }
-
   // fetch all skillProject objects for a certain project
   public getSkillProjects(projectId: number) {
-    return lastValueFrom(this.http.get<SkillProject[]>(skillProjectsApiUrl + '/'+ projectId));
+    return lastValueFrom(
+      this.http.get<SkillProject[]>(skillProjectsApiUrl + '/' + projectId)
+    );
   }
 
   // fetch a skill by skillId
   public getSkill(skillId: number) {
-    return lastValueFrom(this.http.get<Skill>(skillsApiUrl + '/'+ skillId));
+    return lastValueFrom(this.http.get<Skill>(skillsApiUrl + '/' + skillId));
   }
 
   // Add skill names to a project
@@ -103,5 +93,23 @@ export class CatalogueService implements OnInit {
     }
     // After skills have been added, bring projectsForCatalogue up to date with _projects
     this.projectsForCatalogue = this._projects;
+  }
+
+  // Create a ney project
+  public createNewProject(project: Project): void {
+    const headers = new HttpHeaders({
+      'content-type': 'application/json',
+      'x-api-key': apiKey,
+    });
+    this.http
+      .post<Project>(projectsApiUrl, project, { headers })
+      .subscribe(() => console.log('Project is created'));
+  }
+
+  // Delete a project based on ID
+  public deleteProject(projectId: number): void {
+    this.http
+      .delete(projectsApiUrl + '/' + projectId)
+      .subscribe(() => console.log('Delete successful'));
   }
 }

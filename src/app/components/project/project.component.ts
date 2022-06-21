@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
 @Component({
   selector: 'app-project',
@@ -9,10 +8,9 @@ import { Project } from 'src/app/models/project.model';
 export class ProjectComponent implements OnInit {
   selectedProject: Project | undefined;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.paramMap.get('id'));
     this.selectedProject = JSON.parse(
       sessionStorage.getItem('project') || '{}'
     );
