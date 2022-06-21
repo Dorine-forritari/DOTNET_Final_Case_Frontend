@@ -15,10 +15,12 @@ const { projectsApiUrl, skillProjectsApiUrl, skillsApiUrl, apiKey } =
 })
 export class CatalogueService implements OnInit {
   private _projects: Project[] = [];
+  private _matchingProjects: Project[] = [];
   private _selectedProject: Project | undefined;
 
   // projectsForCatalogue is used for Industry Switching on Catalogue Page
   public projectsForCatalogue: Project[] = [];
+  public matchingProjectsForCatalogue: Project[] = [];
 
   get selectedProject(): Project | undefined {
     return this._selectedProject;
@@ -34,6 +36,10 @@ export class CatalogueService implements OnInit {
 
   set projects(projectList: Project[]) {
     this._projects = projectList;
+  }
+
+  get matchingProjects(): Project[] {
+    return this._matchingProjects;
   }
 
   constructor(private http: HttpClient, public auth: AuthService) {}
@@ -61,6 +67,25 @@ export class CatalogueService implements OnInit {
       error: () => {},
       complete: () => {},
     });
+  }
+
+  // Fetch projects that have matching skills with a certain user
+  public fetchMatchingProjects(userId: number): void {
+    this.http
+      .get<ProjectResponse[]>(usersApiUrl + '/' + userId + '/project/skills')
+      .subscribe({
+        next: (response: any) => {
+          this._matchingProjects = response.value;
+          // Fetch skills for each project
+          for (let i = 0; i < this._matchingProjects.length; i++) {
+            this.fetchSkillsByMatchingProject(
+              this._matchingProjects[i].projectId
+            );
+          }
+        },
+        error: () => {},
+        complete: () => {},
+      });
   }
 
   // fetch all skillProject objects for a certain project
@@ -111,5 +136,24 @@ export class CatalogueService implements OnInit {
     this.http
       .delete(projectsApiUrl + '/' + projectId)
       .subscribe(() => console.log('Delete successful'));
+  }
+  // Add skill names to a matching project
+  public async fetchSkillsByMatchingProject(projectId: number): Promise<void> {
+    // first get the skillProject objects
+    const skillProjects = await this.getSkillProjects(projectId);
+    const skillNames = [];
+    // For every skillProject object, fetch the skill and push the skill.name to an array
+    for (let i = 0; i < skillProjects.length; i++) {
+      let skill = await this.getSkill(skillProjects[i].skillId);
+      skillNames.push(skill.name);
+    }
+    // Find the project in this._matchingProjects and add the skill names
+    for (let i = 0; i < this._matchingProjects.length; i++) {
+      if (this._matchingProjects[i].projectId === projectId) {
+        this._matchingProjects[i].skills = skillNames;
+      }
+    }
+    // After skills have been added, bring matchingProjectsForCatalogue up to date with _matchingProjects
+    this.matchingProjectsForCatalogue = this._matchingProjects;
   }
 }

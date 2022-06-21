@@ -29,6 +29,16 @@ export class CataloguePage implements OnInit {
     return this.catalogueService.projectsForCatalogue;
   }
 
+  // List of matching projects for a certain user (user has skills that are needed for project)
+  get matchingProjects(): Project[] {
+    return this.catalogueService.matchingProjects;
+  }
+
+  // List of matching projects that changes based on filtering by Industry.
+  get matchingProjectsForCatalogue(): Project[] {
+    return this.catalogueService.matchingProjectsForCatalogue;
+  }
+
   constructor(
     private catalogueService: CatalogueService,
     public auth: AuthService,
@@ -43,6 +53,9 @@ export class CataloguePage implements OnInit {
       }
     });
     this.catalogueService.fetchCatalogue();
+    if (this.userService.user) {
+      this.catalogueService.fetchMatchingProjects(this.userService.user.userId);
+    }
   }
 
   // Filters projects based on change events for the Industry check-boxes.
@@ -57,6 +70,14 @@ export class CataloguePage implements OnInit {
         (x.industry.toLowerCase() === 'web development' &&
           this.filter.webdevelopment)
     );
+    if (this.userService.user) {
+      this.catalogueService.matchingProjectsForCatalogue = this.matchingProjects.filter(x => 
+        (x.industry.toLowerCase() === 'music' && this.filter.music)
+        || (x.industry.toLowerCase() === 'film' && this.filter.film)
+        || (x.industry.toLowerCase() === 'game development' && this.filter.gamedevelopment)
+        || (x.industry.toLowerCase() === 'web development' && this.filter.webdevelopment)
+      );
+    }
   }
 
   newProject() {
