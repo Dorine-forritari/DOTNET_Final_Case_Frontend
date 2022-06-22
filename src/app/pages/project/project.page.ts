@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { Project } from 'src/app/models/project.model';
+import { MessageService } from 'src/app/services/message.service';
 @Component({
   selector: 'app-project-page',
   templateUrl: './project.page.html',
