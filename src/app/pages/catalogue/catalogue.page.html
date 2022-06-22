@@ -1,55 +1,67 @@
-<div class="container">
-  <div class="container-header">
-    <h1 class="title">Projects</h1>
-    <div>
-      <input
-        class="checkbox"
-        type="checkbox"
-        [(ngModel)]="filter.music"
-        (ngModelChange)="filterProjects()"
-      />
-      <label for="music">Music</label>
+<div class="catalogue-header">
+  <div class="container">
+    <div class="first-section">
+      <h1 class="title">Projects</h1>
+      <div>
+        <input
+          class="checkbox"
+          type="checkbox"
+          [(ngModel)]="filter.music"
+          (ngModelChange)="filterProjects()"
+        />
+        <label for="music">Music</label>
+      </div>
+      <div>
+        <input
+          class="checkbox"
+          type="checkbox"
+          [(ngModel)]="filter.film"
+          (ngModelChange)="filterProjects()"
+        />
+        <label for="film">Film</label>
+      </div>
+      <div>
+        <input
+          class="checkbox"
+          type="checkbox"
+          [(ngModel)]="filter.gamedevelopment"
+          (ngModelChange)="filterProjects()"
+        />
+        <label for="gamedev">Gamedevelopment</label>
+      </div>
+      <div>
+        <input
+          class="checkbox"
+          type="checkbox"
+          [(ngModel)]="filter.webdevelopment"
+          (ngModelChange)="filterProjects()"
+        />
+        <label for="webdev">Webdevelopment</label>
+      </div>
+      <app-searchbar></app-searchbar>
+      <button class="btn btn-primary" (click)="newProject()">
+        New project
+      </button>
     </div>
-    <div>
-      <input
-        class="checkbox"
-        type="checkbox"
-        [(ngModel)]="filter.film"
-        (ngModelChange)="filterProjects()"
-      />
-      <label for="film">Film</label>
+    <div class="second-section">
+      <div>
+        <h3>All projects</h3>
+      </div>
+      <div class="matching">
+        <h3 *ngIf="loggedIn === true">Projects that match your skills</h3>
+      </div>
     </div>
-    <div>
-      <input
-        class="checkbox"
-        type="checkbox"
-        [(ngModel)]="filter.gamedevelopment"
-        (ngModelChange)="filterProjects()"
-      />
-      <label for="gamedev">Gamedevelopment</label>
-    </div>
-    <div>
-      <input
-        class="checkbox"
-        type="checkbox"
-        [(ngModel)]="filter.webdevelopment"
-        (ngModelChange)="filterProjects()"
-      />
-      <label for="webdev">Webdevelopment</label>
-    </div>
-    <app-searchbar></app-searchbar>
-    <button class="btn btn-success" (click)="newProject()">New project</button>
   </div>
+</div>
+<div class="container">
   <div class="row">
     <div class="col">
-      <div class="content-left">
-        <h3>All projects</h3>
+      <div class="sticky">
         <app-catalogue [projects]="projectsForCatalogue"></app-catalogue>
       </div>
     </div>
-    <div class="col">
-      <div class="content-right">
-        <h3>Projects that match your skills</h3>
+    <div class="col" *ngIf="loggedIn === true">
+      <div class="sticky">
         <app-catalogue
           [projects]="matchingProjectsForCatalogue"
         ></app-catalogue>

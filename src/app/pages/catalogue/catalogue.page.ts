@@ -11,6 +11,8 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./catalogue.page.scss'],
 })
 export class CataloguePage implements OnInit {
+  loggedIn: boolean = false;
+
   // On initializing the CataloguePage all Industry checkboxes are checked (projects of all industries are shown)
   filter = {
     music: true,
@@ -47,6 +49,7 @@ export class CataloguePage implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loggedIn = this.userService.checkUserIsLoggedIn();
     this.auth.user$.subscribe((profile) => {
       if (profile !== null) {
         this.userService.fetchUserBasedOnEmail(profile?.email);
@@ -71,12 +74,16 @@ export class CataloguePage implements OnInit {
           this.filter.webdevelopment)
     );
     if (this.userService.user) {
-      this.catalogueService.matchingProjectsForCatalogue = this.matchingProjects.filter(x => 
-        (x.industry.toLowerCase() === 'music' && this.filter.music)
-        || (x.industry.toLowerCase() === 'film' && this.filter.film)
-        || (x.industry.toLowerCase() === 'game development' && this.filter.gamedevelopment)
-        || (x.industry.toLowerCase() === 'web development' && this.filter.webdevelopment)
-      );
+      this.catalogueService.matchingProjectsForCatalogue =
+        this.matchingProjects.filter(
+          (x) =>
+            (x.industry.toLowerCase() === 'music' && this.filter.music) ||
+            (x.industry.toLowerCase() === 'film' && this.filter.film) ||
+            (x.industry.toLowerCase() === 'game development' &&
+              this.filter.gamedevelopment) ||
+            (x.industry.toLowerCase() === 'web development' &&
+              this.filter.webdevelopment)
+        );
     }
   }
 
