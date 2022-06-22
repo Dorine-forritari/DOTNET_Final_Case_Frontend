@@ -1,0 +1,41 @@
+<div class="form-group">
+  <ul>
+    <li *ngFor="let message of messages">
+      <div class="chat">
+        <textarea
+          class="form-control"
+          id="{{ message.messageId }}"
+          rows="5"
+          readonly
+          placeholder="This chat message could not be loaded"
+          >{{ getUser(message.userId).name }}: {{ message.description }}
+        </textarea>
+      </div>
+    </li>
+  </ul>
+  <form
+    #createNewMessageForm="ngForm"
+    (ngSubmit)="onSubmit(createNewMessageForm)"
+  >
+    <fieldset class="mb-3">
+      <div class="chat">
+        <textarea
+          class="form-control"
+          id="sendMessage"
+          rows="3"
+          placeholder="Type your chat message here"
+          type="text"
+          name="description"
+          ngModel
+          class="form-control"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+          required
+        ></textarea>
+        <div class="button">
+          <button type="submit" class="btn btn-success">Send</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
