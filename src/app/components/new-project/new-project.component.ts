@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { RouteReuseStrategy, Router } from '@angular/router';
 
+// ng-angular-popup
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-new-project',
   templateUrl: './new-project.component.html',
@@ -15,13 +17,20 @@ export class NewProjectComponent implements OnInit {
 
   constructor(
     private catalogueService: CatalogueService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {}
+  
+  // Show message when a project is successfully created
+  showSuccess() {
+    this.toast.success({detail:"SUCCESS",summary:'Project successfully created.',duration:5000});
+  }
 
   onSubmit(form: NgForm) {
     this.catalogueService.createNewProject(form.value);
+    this.showSuccess()
     this.router.navigate(['catalogue']);
   }
 }
