@@ -33,20 +33,23 @@ export class ProfilecardEditComponent implements OnInit {
     // this.loggedInUserSkills = [];
     // //get the skill names of the logged in user
     // this.getSkillNames();
-    // this.SetRadioButton();
-    
+    this.SetRadioButton();
+    this.skillService.fetchAllSkills();
   }
 
   ngOnInit(): void {
-    this.skillService.fetchAllSkills();
+    // console.log("Initializing component");
+    // if (this.skills.length === 0) {
+    //   this.skillService.fetchAllSkills();
+    // }
   }
 
   getSkillNames(): void {
     for (let i = 0; i < this.loggedInUser.skills.length; i++) {
       for (let j = 0; j < this.allSkills.length; j++) {
-        if (this.loggedInUser.skills[i] == this.allSkills[j].id) {
+        if (this.loggedInUser.skills[i] == this.allSkills[j].skillId) {
           this.loggedInUserSkills.push(this.allSkills[j]);
-          this.RemoveElementFromArray(this.allSkills[j].id);
+          this.RemoveElementFromArray(this.allSkills[j].skillId);
           break;
         }
       }
@@ -55,7 +58,7 @@ export class ProfilecardEditComponent implements OnInit {
 
   RemoveElementFromArray(element: number) {
     this.remainingSkills.forEach((value, index) => {
-      if (value.id == element) this.remainingSkills.splice(index, 1);
+      if (value.skillId == element) this.remainingSkills.splice(index, 1);
     });
   }
 
@@ -69,7 +72,7 @@ export class ProfilecardEditComponent implements OnInit {
 
   DeleteSkill(skill: Skill) {
     for (let i = 0; i < this.loggedInUser.skills.length; i++) {
-      if (skill.id === this.loggedInUser.skills[i]) {
+      if (skill.skillId === this.loggedInUser.skills[i]) {
         console.log(
           'skill id ' + this.loggedInUser.skills[i] + ' has been deleted'
         );
@@ -110,13 +113,26 @@ export class ProfilecardEditComponent implements OnInit {
   //     }
   //   }
   // }
-  public async AddSkillToUser(value: string) {
+  AddSkillToUser(value: string) {
+    console.log("selecting skill...");
+    console.log(value);
     for (let i = 0; i < this.skills.length; i++) {
       if (value === this.skills[i].name) {
-        await this.skillService.addSkillUser(this.skills[i].id, this.userService.user!.userId);
-        this.skillService.fetchAllSkills();
-        this.refreshComponent();
-        break;
+        console.log("skill id: " + this.skills[i].skillId);
+        console.log("user id: " + this.userService.user!.userId);
+        this.skillService.addSkillUser(this.skills[i].skillId, this.userService.user!.userId).subscribe({
+          next: (response) => {
+            console.log(response);
+          },
+          error: () => {},
+          complete: () => {
+            this.skillService.fetchAllSkills();
+            this.refreshComponent();
+          },
+        });
+        // this.skillService.fetchAllSkills();
+        // this.refreshComponent();
+        // break;
       }
     }
   }
