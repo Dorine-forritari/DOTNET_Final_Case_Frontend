@@ -8,20 +8,34 @@
           rows="5"
           readonly
           placeholder="This chat message could not be loaded"
-        >{{ message.description }}
+          >{{ getUser(message.userId).name }}: {{ message.description }}
         </textarea>
       </div>
     </li>
   </ul>
-  <div class="chat">
-    <textarea
-      class="form-control"
-      id="exampleFormControlTextarea2"
-      rows="3"
-      placeholder="Type your chat message here"
-    ></textarea>
-    <div class="button">
-      <button type="submit" class="btn btn-success">Send</button>
-    </div>
-  </div>
+  <form
+    #createNewMessageForm="ngForm"
+    (ngSubmit)="onSubmit(createNewMessageForm)"
+  >
+    <fieldset class="mb-3">
+      <div class="chat">
+        <textarea
+          class="form-control"
+          id="sendMessage"
+          rows="3"
+          placeholder="Type your chat message here"
+          type="text"
+          name="description"
+          ngModel
+          class="form-control"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+          required
+        ></textarea>
+        <div class="button">
+          <button type="submit" class="btn btn-success">Send</button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
 </div>

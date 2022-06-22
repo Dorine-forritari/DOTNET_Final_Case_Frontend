@@ -12,11 +12,16 @@ const { usersApiUrl, apiKey } = environment;
 export class UserService {
   // Properties
   private _user?: User;
+  private _users: User[] = [];
   loggedIn: boolean = false;
 
   // Getter and setter
   get user(): User | undefined {
     return this._user;
+  }
+
+  get users(): User[] {
+    return this._users;
   }
 
   set user(user: User | undefined) {
@@ -48,8 +53,12 @@ export class UserService {
   // Fetch all users
   public fetchAllUsers(): void {
     this.http.get<User[]>(usersApiUrl).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: (response: any) => {
+        this._users = response.map((user: User) => {
+          return {
+            ...user,
+          };
+        });
       },
       error: () => {},
       complete: () => {},
