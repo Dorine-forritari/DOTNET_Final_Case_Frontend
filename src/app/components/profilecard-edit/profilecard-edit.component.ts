@@ -29,12 +29,21 @@ export class ProfilecardEditComponent implements OnInit {
     return this.skillService.skills;
   }
 
+  get skillsUser(): Skill[] {
+    return this.skillService.skillsUser;
+  }
+
+  // get skillsUserHas(): Skill[] {
+  //   return this.skillService.skills;
+  // }
+
   constructor(private router: Router, private userService: UserService, private skillService: SkillService) {
     // this.loggedInUserSkills = [];
     // //get the skill names of the logged in user
     // this.getSkillNames();
     this.SetRadioButton();
     this.skillService.fetchAllSkills();
+    this.skillService.getAllSkillsForUser();
   }
 
   ngOnInit(): void {
@@ -127,6 +136,7 @@ export class ProfilecardEditComponent implements OnInit {
           error: () => {},
           complete: () => {
             this.skillService.fetchAllSkills();
+            this.skillService.getAllSkillsForUser();
             this.refreshComponent();
           },
         });

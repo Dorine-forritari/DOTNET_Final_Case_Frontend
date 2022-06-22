@@ -13,11 +13,19 @@ const { skillsApiUrl, skillUserApiUrl, apiKey } = environment;
 })
 
 export class SkillService {
+  // All skills in database
   private _skills: Skill[] = [];
+  // SkillUser objects that represent the skills a user has. 
   private _skillsUserHas: SkillUser[] = [];
+  // Skill objects that a user has, these are used to display the names on the profile.
+  private _skillsUser: Skill[] = [];
 
   get skills(): Skill[] {
     return this._skills;
+  }
+
+  get skillsUser(): Skill[] {
+    return this._skillsUser;
   }
 
   constructor(private http: HttpClient, private userService: UserService) { }
@@ -65,6 +73,19 @@ export class SkillService {
       'x-api-key': apiKey,
     });
     return this.http.post<SkillUser>(skillUserApiUrl + "?skillId=" + skillId + "&userId=" + userId, { headers });
+  }
+
+  // fetch a skill by skillId
+  public getSkill(skillId: number) {
+    return lastValueFrom(this.http.get<Skill>(skillsApiUrl + '/' + skillId));
+  }
+
+  public async getAllSkillsForUser() {
+    const skillUserObjects = await this.getSkillsByUser();
+    for (let i = 0; i < skillUserObjects.length; i++) {
+      const skillObject = await this.getSkill(skillUserObjects[i].skillId);
+      this._skillsUser.push(skillObject);
+    }
   }
 
 }
