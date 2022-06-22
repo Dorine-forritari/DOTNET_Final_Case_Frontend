@@ -43,25 +43,32 @@
         New project
       </button>
     </div>
-    <div class="second-section">
-      <div>
+    <div class="row">
+      <div class="col">
+        <h3>All projects</h3>
+      </div>
+      <div class="col" *ngIf="loggedIn === true">
+        <h3>Projects that match your skills</h3>
+      </div>
+
+      <!-- <div>
         <h3>All projects</h3>
       </div>
       <div class="matching">
         <h3 *ngIf="loggedIn === true">Projects that match your skills</h3>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="sticky">
+      <div>
         <app-catalogue [projects]="projectsForCatalogue"></app-catalogue>
       </div>
     </div>
     <div class="col" *ngIf="loggedIn === true">
-      <div class="sticky">
+      <div>
         <app-catalogue
           [projects]="matchingProjectsForCatalogue"
         ></app-catalogue>
