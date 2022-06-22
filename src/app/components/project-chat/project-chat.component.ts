@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Message } from 'src/app/models/message.model';
 import { Project } from 'src/app/models/project.model';
 
 @Component({
@@ -8,13 +9,11 @@ import { Project } from 'src/app/models/project.model';
 })
 export class ProjectChatComponent implements OnInit {
   selectedProject: Project | undefined;
-  chat: string[] = ['hello', 'oh hi there!', 'hello world!'];
+  @Input() messages: Message[] = [];
+
 
   constructor() {}
 
   ngOnInit(): void {
-    this.selectedProject = JSON.parse(
-      sessionStorage.getItem('project') || '{}'
-    );
   }
 }

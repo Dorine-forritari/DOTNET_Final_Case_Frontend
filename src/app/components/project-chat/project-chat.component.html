@@ -1,15 +1,18 @@
 <div class="form-group">
-  <div class="chat">
-    <textarea
-      class="form-control"
-      id="exampleFormControlTextarea1"
-      rows="20"
-      readonly
-      placeholder="No chat messages have been sent yet"
-    >
-      </textarea
-    >
-  </div>
+  <ul>
+    <li *ngFor="let message of messages">
+      <div class="chat">
+        <textarea
+          class="form-control"
+          id="{{ message.messageId }}"
+          rows="5"
+          readonly
+          placeholder="This chat message could not be loaded"
+        >{{ message.description }}
+        </textarea>
+      </div>
+    </li>
+  </ul>
   <div class="chat">
     <textarea
       class="form-control"
