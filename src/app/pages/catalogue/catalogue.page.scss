@@ -5,3 +5,24 @@
 .container>h3 {
     margin-top: 2rem;
 }
+
+.catalogue-header {
+    position: sticky;
+    top: 6em;
+    z-index: 100;
+    margin-bottom: 1em;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 10px;
+}
+
+.first-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5em;
+}
+
+.col {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+}
