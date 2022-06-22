@@ -43,16 +43,16 @@
   <div class="row">
     <div class="col">
       <div class="content-left">
-        <h3>Projects that match your skills</h3>
-        <app-catalogue
-          [projects]="matchingProjectsForCatalogue"
-        ></app-catalogue>
+        <h3>All projects</h3>
+        <app-catalogue [projects]="projectsForCatalogue"></app-catalogue>
       </div>
     </div>
     <div class="col">
       <div class="content-right">
-        <h3>All projects</h3>
-        <app-catalogue [projects]="projectsForCatalogue"></app-catalogue>
+        <h3>Projects that match your skills</h3>
+        <app-catalogue
+          [projects]="matchingProjectsForCatalogue"
+        ></app-catalogue>
       </div>
     </div>
   </div>
