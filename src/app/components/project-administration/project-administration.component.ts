@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm, FormBuilder } from '@angular/forms';
 import { Project } from 'src/app/models/project.model';
-import { mockProjects } from 'src/app/data/mock-data';
 
 @Component({
   selector: 'app-project-administration',
@@ -13,38 +12,21 @@ export class ProjectAdministrationComponent implements OnInit {
   createProjectForm = new FormControl('');
   selectedProject: Project | undefined;
 
-  statusList = ['Founding', 'In progress', 'Stalled', 'Completed'];
+  progressList = ['Founding', 'In progress', 'Stalled', 'Completed'];
 
-  constructor(private fb: FormBuilder) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.selectedProject = JSON.parse(
       sessionStorage.getItem('project') || '{}'
     );
+    console.log(this.selectedProject);
   }
   onSubmit(form: NgForm) {
-    console.log('Submitted: ', form.value);
+    console.log(form.value);
   }
-
-  setStatus(event: any) {
-    if (this.selectedProject?.progress === undefined) {
-      throw new Error('Progress is undefined');
-    }
-    this.selectedProject.progress = event.target.value;
-  }
-
-  // Status form functions
-  statusForm = this.fb.group({
-    status: [''],
-  });
 
   changeStatus(e: any) {
-    this.status?.setValue(e.target.value, {
-      onlySelf: true,
-    });
-  }
-
-  get status() {
-    return this.statusForm.get('status');
+    console.log(e.target.value);
   }
 }

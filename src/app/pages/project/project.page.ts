@@ -21,13 +21,9 @@ export class ProjectPage implements OnInit {
 
   ngOnInit(): void {
     const projectId = this.route.snapshot.paramMap.get('id');
-    console.log(projectId);
-
     const foundProject = this.projects.find((element) => {
       return element.projectId === Number(projectId);
     });
-    console.log(foundProject);
-
     sessionStorage.setItem('project', JSON.stringify(foundProject));
 
     // TODO: GET PROJECT ID FROM URL AND SEND TO CATALOGUE SERVICE

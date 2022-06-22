@@ -2,7 +2,33 @@ a {
     color: white;
 }
 
+.left-container {
+    display: flex;
+    align-items: center;
+}
+
 .right-container {
     display: flex;
     align-items: center;
+}
+
+.navbar {
+    background-color: #03045e;
+}
+
+.navbar-brand {
+    margin-right: 2rem;
+}
+
+.navbar-title {
+    margin-top: 1rem;;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    float: left;
+}
+
+.navbar-logo{
+    float: left;
+    margin-right: 1rem;
 }

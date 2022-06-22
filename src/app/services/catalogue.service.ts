@@ -7,17 +7,25 @@ import { Skill } from '../models/skill.model';
 import { lastValueFrom } from 'rxjs';
 import { SkillProject } from '../models/skillproject.model';
 
-const { mockProjectApiUrl, projectsApiUrl, skillProjectsApiUrl, skillsApiUrl } = environment;
+const {
+  projectsApiUrl,
+  skillProjectsApiUrl,
+  skillsApiUrl,
+  usersApiUrl,
+  apiKey,
+} = environment;
 
 @Injectable({
   providedIn: 'root',
 })
 export class CatalogueService implements OnInit {
   private _projects: Project[] = [];
+  private _matchingProjects: Project[] = [];
   private _selectedProject: Project | undefined;
 
   // projectsForCatalogue is used for Industry Switching on Catalogue Page
   public projectsForCatalogue: Project[] = [];
+  public matchingProjectsForCatalogue: Project[] = [];
 
   get selectedProject(): Project | undefined {
     return this._selectedProject;
@@ -33,6 +41,10 @@ export class CatalogueService implements OnInit {
 
   set projects(projectList: Project[]) {
     this._projects = projectList;
+  }
+
+  get matchingProjects(): Project[] {
+    return this._matchingProjects;
   }
 
   constructor(private http: HttpClient, public auth: AuthService) {}
@@ -62,13 +74,19 @@ export class CatalogueService implements OnInit {
     });
   }
 
-  // Fetch single project based on ID
-  public fetchProject(projectId: number): void {
+  // Fetch projects that have matching skills with a certain user
+  public fetchMatchingProjects(userId: number): void {
     this.http
-      .get<ProjectResponse[]>(mockProjectApiUrl + '/' + projectId)
+      .get<ProjectResponse[]>(usersApiUrl + '/' + userId + '/project/skills')
       .subscribe({
         next: (response: any) => {
-          console.log(response);
+          this._matchingProjects = response.value;
+          // Fetch skills for each project
+          for (let i = 0; i < this._matchingProjects.length; i++) {
+            this.fetchSkillsByMatchingProject(
+              this._matchingProjects[i].projectId
+            );
+          }
         },
         error: () => {},
         complete: () => {},
@@ -77,12 +95,14 @@ export class CatalogueService implements OnInit {
 
   // fetch all skillProject objects for a certain project
   public getSkillProjects(projectId: number) {
-    return lastValueFrom(this.http.get<SkillProject[]>(skillProjectsApiUrl + '/'+ projectId));
+    return lastValueFrom(
+      this.http.get<SkillProject[]>(skillProjectsApiUrl + '/' + projectId)
+    );
   }
 
   // fetch a skill by skillId
   public getSkill(skillId: number) {
-    return lastValueFrom(this.http.get<Skill>(skillsApiUrl + '/'+ skillId));
+    return lastValueFrom(this.http.get<Skill>(skillsApiUrl + '/' + skillId));
   }
 
   // Add skill names to a project
@@ -103,5 +123,42 @@ export class CatalogueService implements OnInit {
     }
     // After skills have been added, bring projectsForCatalogue up to date with _projects
     this.projectsForCatalogue = this._projects;
+  }
+
+  // Create a ney project
+  public createNewProject(project: Project): void {
+    const headers = new HttpHeaders({
+      'content-type': 'application/json',
+      'x-api-key': apiKey,
+    });
+    this.http
+      .post<Project>(projectsApiUrl, project, { headers })
+      .subscribe(() => console.log('Project is created'));
+  }
+
+  // Delete a project based on ID
+  public deleteProject(projectId: number): void {
+    this.http
+      .delete(projectsApiUrl + '/' + projectId)
+      .subscribe(() => console.log('Delete successful'));
+  }
+  // Add skill names to a matching project
+  public async fetchSkillsByMatchingProject(projectId: number): Promise<void> {
+    // first get the skillProject objects
+    const skillProjects = await this.getSkillProjects(projectId);
+    const skillNames = [];
+    // For every skillProject object, fetch the skill and push the skill.name to an array
+    for (let i = 0; i < skillProjects.length; i++) {
+      let skill = await this.getSkill(skillProjects[i].skillId);
+      skillNames.push(skill.name);
+    }
+    // Find the project in this._matchingProjects and add the skill names
+    for (let i = 0; i < this._matchingProjects.length; i++) {
+      if (this._matchingProjects[i].projectId === projectId) {
+        this._matchingProjects[i].skills = skillNames;
+      }
+    }
+    // After skills have been added, bring matchingProjectsForCatalogue up to date with _matchingProjects
+    this.matchingProjectsForCatalogue = this._matchingProjects;
   }
 }

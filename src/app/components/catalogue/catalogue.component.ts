@@ -10,21 +10,11 @@ import { Project } from 'src/app/models/project.model';
 export class CatalogueComponent implements OnInit {
   @Input() projects: Project[] = [];
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {
-    if (this.userService.user === undefined) {
-      console.log('undefined');
-    }
-    console.log(sessionStorage.getItem('userEmail'));
-
-    // this.userService.fetchUserBasedOnEmail();
-  }
+  ngOnInit(): void {}
 
   goToProject(projectId: number) {
-    console.log(projectId);
-    console.log(this.projects);
-
     this.router.navigate(['project', projectId]);
   }
 }

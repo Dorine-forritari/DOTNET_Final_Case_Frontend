@@ -1,28 +1,26 @@
 <div class="container">
-  <form [formGroup]="statusForm">
+  <form #createProjectForm="ngForm" (ngSubmit)="onSubmit(createProjectForm)">
     <div class="status-container">
       <div class="input-group input-group-sm">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="github">Project status:</span>
+          <span class="input-group-text" id="progress">Project status:</span>
         </div>
         <select
-          class="status-select mb-3"
+          class="status-select"
           (change)="changeStatus($event)"
-          formControlName="status"
+          name="progress"
+          ngModel
         >
-          <option value="">Choose status</option>
-          <option *ngFor="let status of statusList" [ngValue]="status">
-            {{ status }}
+          <option value="" disabled>
+            {{ selectedProject?.progress }}
+          </option>
+          <option *ngFor="let progress of progressList" [ngValue]="progress">
+            {{ progress }}
           </option>
         </select>
       </div>
-      <div class="statusSave">
-        <button type="submit" class="btn btn-success">Save</button>
-      </div>
     </div>
-  </form>
-  <hr class="divider" />
-  <form #createProjectForm="ngForm" (ngSubmit)="onSubmit(createProjectForm)">
+    <hr class="divider" />
     <fieldset class="mb-3">
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
@@ -51,6 +49,7 @@
           aria-label="small"
           aria-describedby="inputGroup-sizing-sm"
           placeholder="{{ selectedProject?.title }}"
+          required
         />
       </div>
       <div class="input-group input-group-sm mb-3">

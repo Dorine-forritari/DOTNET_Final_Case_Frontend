@@ -15,9 +15,11 @@ export class ProjectHeaderComponent implements OnInit {
   icon: string | undefined;
   loggedIn: boolean = false;
 
-  constructor(private router: Router, 
-              private userService: UserService, 
-              private joinProjectService: JoinprojectService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private joinProjectService: JoinprojectService
+  ) {}
 
   ngOnInit(): void {
     this.loggedIn = this.userService.checkUserIsLoggedIn();
@@ -34,7 +36,7 @@ export class ProjectHeaderComponent implements OnInit {
       this.icon = 'globe';
     } else if (this.selectedIndustry === 'music') {
       this.icon = 'music-note-beamed';
-    } else if (this.selectedIndustry === 'movie') {
+    } else if (this.selectedIndustry === 'film') {
       this.icon = 'camera-reels';
     } else if (this.selectedIndustry === 'game development') {
       this.icon = 'joystick';
@@ -51,34 +53,34 @@ export class ProjectHeaderComponent implements OnInit {
   }
 
   // Function to join a project
-  public async joinProject()
-  {
-
+  public async joinProject() {
     // Undefined values set to a number
-    const projectId: number = this.selectedProject?.projectId!
-  
+    const projectId: number = this.selectedProject?.projectId!;
 
-    if(!this.userService.user){
+    if (!this.userService.user) {
       return;
     }
 
-    const projectAlreadyJoined = await this.joinProjectService.checkAlreadyJoined(this.userService.user.userId, projectId)
-    if(projectAlreadyJoined)
-    {
-      alert("No 😥 you have already joined this project.");
-    }
-    else {
-    if(this.userService.user.userId)
-    this.joinProjectService.join(this.userService.user.userId, projectId)
-    .subscribe({
-      next: (response) => {
-        console.log(response);
-      },
-      error: () => {},
-      complete: () => {},
-    })
+    const projectAlreadyJoined =
+      await this.joinProjectService.checkAlreadyJoined(
+        this.userService.user.userId,
+        projectId
+      );
+    if (projectAlreadyJoined) {
+      alert('No 😥 you have already joined this project.');
+    } else {
+      if (this.userService.user.userId)
+        this.joinProjectService
+          .join(this.userService.user.userId, projectId)
+          .subscribe({
+            next: (response) => {
+              console.log(response);
+            },
+            error: () => {},
+            complete: () => {},
+          });
 
-    alert("Yes😁 you have joined this project.");
-  }
+      alert('Yes😁 you have joined this project.');
+    }
   }
 }
