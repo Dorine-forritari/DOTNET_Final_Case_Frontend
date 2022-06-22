@@ -75,6 +75,14 @@ export class SkillService {
     return this.http.post<SkillUser>(skillUserApiUrl + "?skillId=" + skillId + "&userId=" + userId, { headers });
   }
 
+  public deleteSkillUser(skillId: number, userId: number): Observable<SkillUser> {
+    const headers = new HttpHeaders({
+      'content-type': 'application/json',
+      'x-api-key': apiKey,
+    });
+    return this.http.delete<SkillUser>(skillUserApiUrl + "?skillId=" + skillId + "&userId=" + userId, { headers });
+  }
+
   // fetch a skill by skillId
   public getSkill(skillId: number) {
     return lastValueFrom(this.http.get<Skill>(skillsApiUrl + '/' + skillId));

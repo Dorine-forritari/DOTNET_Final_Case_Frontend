@@ -79,15 +79,33 @@ export class ProfilecardEditComponent implements OnInit {
     }
   }
 
+  // DeleteSkill(skill: Skill) {
+  //   for (let i = 0; i < this.loggedInUser.skills.length; i++) {
+  //     if (skill.skillId === this.loggedInUser.skills[i]) {
+  //       console.log(
+  //         'skill id ' + this.loggedInUser.skills[i] + ' has been deleted'
+  //       );
+  //       this.loggedInUser.skills.splice(i, 1);
+  //       this.refreshComponent();
+  //       break;
+  //     }
+  //   }
+  // }
+
   DeleteSkill(skill: Skill) {
-    for (let i = 0; i < this.loggedInUser.skills.length; i++) {
-      if (skill.skillId === this.loggedInUser.skills[i]) {
-        console.log(
-          'skill id ' + this.loggedInUser.skills[i] + ' has been deleted'
-        );
-        this.loggedInUser.skills.splice(i, 1);
-        this.refreshComponent();
-        break;
+    for (let i = 0; i < this.skillsUser.length; i++) {
+      if (skill.skillId === this.skillsUser[i].skillId) {
+        this.skillService.deleteSkillUser(this.skillsUser[i].skillId, this.userService.user!.userId).subscribe({
+          next: (response) => {
+            console.log(response);
+          },
+          error: () => {},
+          complete: () => {
+            this.skillService.fetchAllSkills();
+            this.skillService.getAllSkillsForUser();
+            this.refreshComponent();
+          },
+        });
       }
     }
   }
