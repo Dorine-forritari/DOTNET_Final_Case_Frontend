@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { mockSkills } from 'src/app/data/mock-data';
 import { Skill } from 'src/app/models/skill.model';
 import { User } from 'src/app/models/user.model';
+import { SkillService } from 'src/app/services/skill.service';
 
 @Component({
   selector: 'app-profilecard',
@@ -14,11 +15,16 @@ export class ProfilecardComponent implements OnInit {
   // TODO!!! all skills should come from API
   allSkills: Skill[] = mockSkills;
 
-  constructor() {
+  get skillsUser(): Skill[] {
+    return this.skillService.skillsUser;
+  }
+
+  constructor(private skillService: SkillService) {
     this.loggedInUserSkills = [];
     // Get the skill names of the logged in user
     // this.getSkillNames();
     this.loggedInUser = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.skillService.getAllSkillsForUser();
   }
 
   getSkillNames(): void {

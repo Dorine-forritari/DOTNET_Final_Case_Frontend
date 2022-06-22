@@ -81,6 +81,7 @@ export class SkillService {
   }
 
   public async getAllSkillsForUser() {
+    this._skillsUser = [];
     const skillUserObjects = await this.getSkillsByUser();
     for (let i = 0; i < skillUserObjects.length; i++) {
       const skillObject = await this.getSkill(skillUserObjects[i].skillId);
