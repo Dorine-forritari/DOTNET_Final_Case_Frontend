@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { mockSkills, mockUsers } from 'src/app/data/mock-data';
 import { Skill } from 'src/app/models/skill.model';
 import { User } from 'src/app/models/user.model';
@@ -28,7 +29,10 @@ export class ProfilecardEditComponent implements OnInit {
     return this.skillService.skillsUser;
   }
 
-  constructor(private router: Router, private userService: UserService, private skillService: SkillService) {
+  constructor(private router: Router, 
+              private userService: UserService, 
+              private skillService: SkillService,
+              private toast: NgToastService) {
     this.SetRadioButton();
     // Fetches skills from database and removes skills that user already has
     this.skillService.fetchAllSkills(); 
@@ -44,6 +48,16 @@ export class ProfilecardEditComponent implements OnInit {
     } else {
       this.checkit('hidden');
     }
+  }
+
+  // Show message when a project is successfully created
+  showSuccess() {
+    this.toast.success({detail:"SUCCESS",summary:'Profile successfully updated.',duration:3000});
+  }
+
+  // Show error when project already joined
+  showError() {
+    this.toast.error({detail:"ERROR",summary:'Profile could not be updated.',sticky:true});
   }
 
   DeleteSkill(skill: Skill) {
@@ -115,8 +129,8 @@ export class ProfilecardEditComponent implements OnInit {
         next: (user: User) => {
           this.userService.user = user;
         },
-        error: () => {},
-        complete: () => {},
+        error: () => {this.showError()},
+        complete: () => {this.showSuccess()},
       });
   }
 
