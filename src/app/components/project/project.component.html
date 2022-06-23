@@ -14,17 +14,21 @@
   </div>
 </div>
 <hr class="divider" />
-<!-- Project screen/photos/progress -->
-<div class="project-progress">
-  <h5>Progress</h5>
-  <!-- Some progress visualization (radial chart?) -->
-</div>
-<div class="project-images">
-  <!-- <h5>Screen</h5> -->
-  <h5>Photos</h5>
-  <app-project-images-carousel></app-project-images-carousel>
-</div>
-<div class="project-chat">
-  <h5>Chat</h5>
-  <app-project-chat [messages]="messages" [users]="users" [selectedProject]="selectedProject"></app-project-chat>
+<div class="bottom-box">
+  <div>
+    <div class="project-progress">
+      <h5 class="bottom-header">Progress</h5>
+      <!-- Some progress visualization (radial chart?) -->
+    </div>
+    <div class="project-images">
+      <h5 class="bottom-header">Photos</h5>
+      <app-project-images-carousel
+        [photo]="selectedProject?.photo"
+      ></app-project-images-carousel>
+    </div>
+  </div>
+  <div class="project-chat">
+    <h5 class="bottom-header">Chat</h5>
+    <app-project-chat [messages]="messages" [users]="users"></app-project-chat>
+  </div>
 </div>
