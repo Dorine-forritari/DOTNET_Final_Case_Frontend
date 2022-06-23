@@ -61,7 +61,7 @@
             </div>
             <button
               type="submit"
-              class="btn btn-success"
+              class="btn btn-primary"
               [disabled]="startForm.invalid"
             >
               Save
@@ -80,7 +80,7 @@
               [(ngModel)]="hidden"
               (change)="changeHidden($event)"
             />
-            Unhidden
+            Public
           </label>
           <label class="btn btn-secondary">
             <input
@@ -92,14 +92,14 @@
               [(ngModel)]="hidden"
               (change)="changeHidden($event)"
             />
-            Hidden
+            Private
           </label>
         </div>
       </div>
       <div class="user-skills">
         <h5>Skills:</h5>
         <ul>
-          <li *ngFor="let skill of loggedInUserSkills">
+          <li *ngFor="let skill of skillsUser">
             <p class="skills-item">
               {{ skill.name }}
               <button
@@ -125,7 +125,7 @@
             (change)="AddSkillToUser(mySelect.value)"
           >
             <option value="" disabled selected>Select a skill</option>
-            <option *ngFor="let skill of remainingSkills" [value]="skill.name">
+            <option *ngFor="let skill of skills" [value]="skill.name">
               {{ skill.name }}
             </option>
           </select>

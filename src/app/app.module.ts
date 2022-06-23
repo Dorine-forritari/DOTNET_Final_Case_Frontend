@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -73,7 +74,8 @@ import { NewProjectPage } from './pages/new-project/new-project.page';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    NgToastModule,
+    
     // 👇 add and initialize AuthModule
     AuthModule.forRoot({
       ...env.auth,

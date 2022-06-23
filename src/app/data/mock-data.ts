@@ -104,35 +104,35 @@ export let mockUsers: User[] = [
 
 export let mockSkills: Skill[] = [
   {
-    id: 1,
+    skillId: 1,
     name: 'piano',
   },
   {
-    id: 2,
+    skillId: 2,
     name: 'triangle',
   },
   {
-    id: 3,
+    skillId: 3,
     name: 'C#',
   },
   {
-    id: 4,
+    skillId: 4,
     name: 'JavaScript',
   },
   {
-    id: 5,
+    skillId: 5,
     name: 'video editing',
   },
   {
-    id: 6,
+    skillId: 6,
     name: 'directing',
   },
   {
-    id: 7,
+    skillId: 7,
     name: '3D modelling',
   },
   {
-    id: 8,
+    skillId: 8,
     name: 'Water modelling',
   },
 ];
