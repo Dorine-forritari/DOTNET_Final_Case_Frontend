@@ -15,6 +15,7 @@ export const environment = {
   projectUserApiUrl: 'https://finalcase.azurewebsites.net/api/projectusers',
   skillProjectsApiUrl: 'https://finalcase.azurewebsites.net/api/skillprojects',
   skillsApiUrl: 'https://finalcase.azurewebsites.net/api/skills',
+  skillUserApiUrl: 'https://finalcase.azurewebsites.net/api/skillusers',
   apiKey: '',
 
   auth: {
