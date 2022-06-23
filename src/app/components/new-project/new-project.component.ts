@@ -1,7 +1,7 @@
 import { CatalogueService } from 'src/app/services/catalogue.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
-import { RouteReuseStrategy, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 // ng-angular-popup
 import { NgToastService } from 'ng-angular-popup';

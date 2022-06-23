@@ -1,6 +1,7 @@
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-profile-setup',
@@ -14,10 +15,16 @@ export class ProfileSetupComponent implements OnInit {
   hidden: boolean | undefined;
   showRequiredFields = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private toast: NgToastService) {}
 
   ngOnInit(): void {
     this.userEmail = JSON.parse(sessionStorage.getItem('email') || '{}');
+  }
+
+  // Show message when a project is successfully created
+  showSuccess() {
+    this.toast.success({detail:"SUCCESS",summary:'Profile successfully updated.',duration:3000});
   }
 
   onSubmit(form: NgForm) {
@@ -38,7 +45,7 @@ export class ProfileSetupComponent implements OnInit {
           console.log(response);
         },
         error: () => {},
-        complete: () => {},
+        complete: () => {this.showSuccess()},
       });
     }
   }
