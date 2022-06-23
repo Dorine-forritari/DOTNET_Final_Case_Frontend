@@ -20,15 +20,16 @@ export class ProjectComponent implements OnInit {
     return this.userService.users;
   }
 
-  constructor(private messageService: MessageService, private userService: UserService,) {
-    
-  }
+  constructor(
+    private messageService: MessageService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.selectedProject = JSON.parse(
       sessionStorage.getItem('project') || '{}'
     );
-    
+
     this.messageService.fetchChat(this.selectedProject?.projectId!);
     this.userService.fetchAllUsers();
   }
