@@ -1,104 +1,96 @@
-<div class="card">
-  <div class="container">
-    <h3 class="title">New project</h3>
-    <form
-      #createNewProjectForm="ngForm"
-      (ngSubmit)="onSubmit(createNewProjectForm)"
-    >
-      <fieldset class="mb-3">
-        <div class="status-container">
-          <div class="input-group input-group-sm">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="progress"
-                >Project status:</span
-              >
-            </div>
-            <select class="status-select" name="progress" ngModel>
-              <option value="" disabled>Choose status</option>
-              <option
-                *ngFor="let progress of progressList"
-                [ngValue]="progress"
-              >
-                {{ progress }}
-              </option>
-            </select>
-          </div>
-        </div>
-        <hr class="divider" />
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="title">Project name:</span>
-          </div>
-          <input
-            type="text"
-            name="title"
-            ngModel
-            class="form-control"
-            aria-label="small"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-          />
-        </div>
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="description">Description:</span>
-          </div>
-          <input
-            type="text"
-            name="description"
-            ngModel
-            class="form-control"
-            aria-label="small"
-            aria-describedby="inputGroup-sizing-sm"
-            required
-          />
-        </div>
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="link">Link:</span>
-          </div>
-          <input
-            type="text"
-            name="link"
-            ngModel
-            class="form-control"
-            aria-label="small"
-            aria-describedby="inputGroup-sizing-sm"
-          />
-        </div>
-        <hr class="divider" />
-        <div class="input-group input-group-sm mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="theme">Theme:</span>
-          </div>
-          <input
-            type="text"
-            name="theme"
-            ngModel
-            class="form-control"
-            aria-label="small"
-            aria-describedby="inputGroup-sizing-sm"
-          />
-        </div>
+<div class="container pt-3">
+  <form
+    #createNewProjectForm="ngForm"
+    (ngSubmit)="onSubmit(createNewProjectForm)"
+  >
+    <fieldset class="mb-3">
+      <div class="status-container">
         <div class="input-group input-group-sm">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="github">Industry:</span>
+            <span class="input-group-text" id="progress">Project status:</span>
           </div>
-          <select class="status-select" name="industry" ngModel>
-            <option value="">Choose status</option>
-            <option *ngFor="let industry of industryList" [ngValue]="industry">
-              {{ industry }}
+          <select class="status-select" name="progress" ngModel>
+            <option value="" disabled>Choose status</option>
+            <option *ngFor="let progress of progressList" [ngValue]="progress">
+              {{ progress }}
             </option>
           </select>
         </div>
-      </fieldset>
-      <button
-        type="submit"
-        class="btn btn-success"
-        [disabled]="createNewProjectForm.form.invalid"
-      >
-        Create project
-      </button>
-    </form>
-  </div>
+      </div>
+      <hr class="divider" />
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="title">Project name:</span>
+        </div>
+        <input
+          type="text"
+          name="title"
+          ngModel
+          class="form-control"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+          required
+        />
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="description">Description:</span>
+        </div>
+        <input
+          type="text"
+          name="description"
+          ngModel
+          class="form-control"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+          required
+        />
+      </div>
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="link">Link:</span>
+        </div>
+        <input
+          type="text"
+          name="link"
+          ngModel
+          class="form-control"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+        />
+      </div>
+      <hr class="divider" />
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="theme">Theme:</span>
+        </div>
+        <input
+          type="text"
+          name="theme"
+          ngModel
+          class="form-control"
+          aria-label="small"
+          aria-describedby="inputGroup-sizing-sm"
+        />
+      </div>
+      <div class="input-group input-group-sm">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="github">Industry:</span>
+        </div>
+        <select class="status-select" name="industry" ngModel>
+          <option value="">Choose status</option>
+          <option *ngFor="let industry of industryList" [ngValue]="industry">
+            {{ industry }}
+          </option>
+        </select>
+      </div>
+    </fieldset>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="createNewProjectForm.form.invalid"
+    >
+      Create project
+    </button>
+  </form>
 </div>
