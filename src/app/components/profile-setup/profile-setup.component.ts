@@ -27,6 +27,11 @@ export class ProfileSetupComponent implements OnInit {
     this.toast.success({detail:"SUCCESS",summary:'Profile successfully updated.',duration:3000});
   }
 
+  // Show error when project already joined
+  showError() {
+    this.toast.error({detail:"ERROR",summary:'Profile could not be updated.',sticky:true});
+  }
+
   onSubmit(form: NgForm) {
     if (form.value.hidden === undefined) {
       this.showRequiredFields = true;
@@ -44,7 +49,7 @@ export class ProfileSetupComponent implements OnInit {
         next: (response) => {
           console.log(response);
         },
-        error: () => {},
+        error: () => {this.showError()},
         complete: () => {this.showSuccess()},
       });
     }
