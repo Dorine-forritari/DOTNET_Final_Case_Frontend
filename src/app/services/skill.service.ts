@@ -76,6 +76,7 @@ export class SkillService {
   }
 
   public deleteSkillUser(skillId: number, userId: number): Observable<SkillUser> {
+    console.log(userId);
     const headers = new HttpHeaders({
       'content-type': 'application/json',
       'x-api-key': apiKey,

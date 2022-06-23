@@ -11,31 +11,16 @@ import { SkillService } from 'src/app/services/skill.service';
 })
 export class ProfilecardComponent implements OnInit {
   loggedInUser: User;
-  @Input() loggedInUserSkills: Skill[];
-  // TODO!!! all skills should come from API
-  allSkills: Skill[] = mockSkills;
 
+  // Get skills user has, to display in list on profile
   get skillsUser(): Skill[] {
     return this.skillService.skillsUser;
   }
 
   constructor(private skillService: SkillService) {
-    this.loggedInUserSkills = [];
-    // Get the skill names of the logged in user
-    // this.getSkillNames();
     this.loggedInUser = JSON.parse(sessionStorage.getItem('user') || '{}');
+    // Gets all skills user has from the database
     this.skillService.getAllSkillsForUser();
-  }
-
-  getSkillNames(): void {
-    for (let i = 0; i < this.loggedInUser.skills.length; i++) {
-      for (let j = 0; j < this.allSkills.length; j++) {
-        if (this.loggedInUser.skills[i] == this.allSkills[j].skillId) {
-          this.loggedInUserSkills.push(this.allSkills[j]);
-          break;
-        }
-      }
-    }
   }
 
   ngOnInit(): void {}
