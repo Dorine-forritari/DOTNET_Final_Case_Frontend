@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from '@auth0/auth0-angular';
+import { NgToastService } from 'ng-angular-popup';
 import { EMPTY, empty } from 'rxjs';
 import { Message } from 'src/app/models/message.model';
 import { Project } from 'src/app/models/project.model';
@@ -19,7 +20,8 @@ export class ProjectChatComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {}
@@ -41,16 +43,27 @@ export class ProjectChatComponent implements OnInit {
     }
 
     this.messageService
-      .createNewMessage(this.userService.user.userId, projectId, form.value.description)
+      .createNewMessage(
+        this.userService.user.userId,
+        projectId,
+        form.value.description
+      )
       .subscribe({
         next: (response) => {
           console.log(response);
         },
         error: () => {
-          alert('your message could not be delivered...did you log in?');
+          this.toast.error({
+            detail: 'ERROR',
+            summary:
+              'Your message could not be delivered, did you forget to log in?',
+          });
         },
         complete: () => {
-          alert('your message has been sent.');
+          this.toast.success({
+            detail: 'SUCCESS',
+            summary: 'Your message has been sent.',
+          });
         },
       });
   }
