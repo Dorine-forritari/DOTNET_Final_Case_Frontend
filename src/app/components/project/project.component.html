@@ -3,6 +3,7 @@
     <p>Project owner:</p>
     <p>Industry: {{ selectedProject?.industry }}</p>
     <p>Theme: {{ selectedProject?.theme }}</p>
+    <p>Description: {{ selectedProject?.description }}</p>
   </div>
   <div class="project-skills">
     <h5>Required skills:</h5>
@@ -29,6 +30,10 @@
   </div>
   <div class="project-chat">
     <h5 class="bottom-header">Chat</h5>
-    <app-project-chat [messages]="messages" [users]="users"></app-project-chat>
+    <app-project-chat
+      [messages]="messages"
+      [users]="users"
+      [selectedProject]="selectedProject"
+    ></app-project-chat>
   </div>
 </div>
