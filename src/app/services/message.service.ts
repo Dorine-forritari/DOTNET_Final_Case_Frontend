@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Message } from '../models/message.model';
+import { Observable } from 'rxjs';
 
 const { messagesApiUrl, apiKey } = environment;
 
@@ -42,14 +43,20 @@ export class MessageService implements OnInit {
     });
   }
 
-// Post message to a project
-public createNewMessage(message: Message): void {
+  // Post message to a project
+  public createNewMessage(userId: number, projectId: number, description: string): Observable<Message> {
     const headers = new HttpHeaders({
       'content-type': 'application/json',
+      'accept': 'application/json',
       'x-api-key': apiKey,
     });
-    this.http
-      .post<Message>(messagesApiUrl, message, { headers })
-      .subscribe(() => console.log('Message is created'));
+    const message = {
+      "description": description,
+      "userId": userId,
+      "projectId": projectId,
+    };
+    console.log(description);
+    console.log(message);
+    return this.http.post<Message>(messagesApiUrl, message, { headers });
   }
 }
