@@ -14,4 +14,8 @@ export class NavbarComponent implements OnInit {
   goToHome() {
     this.router.navigate(['catalogue']);
   }
+
+  goToProfile() {
+    this.router.navigate(['profile']);
+  }
 }
