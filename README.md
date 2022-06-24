@@ -1,4 +1,4 @@
-# FinalCase - frontend
+# Legalt - frontend
 
 # Description
 The repository contains the files for our Legalt application that we built for the final case of the traineeship by Experis and Noroff. With this application you can manage your projects. https://heroic-sunflower-75682c.netlify.app/
