@@ -1,6 +1,9 @@
-# FinalCase
+# FinalCase - frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+# Description
+The repository contains the files for our Legalt application that we built for the final case of the traineeship by Experis and Noroff. With this application you can manage your projects. https://heroic-sunflower-75682c.netlify.app/
+
+This application was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3. 
 
 ## Development server
 
@@ -21,6 +24,12 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Maintainers
+[@Dorine-forritari](https://github.com/Dorine-forritari)
+[@Pimbosly](https://github.com/Pimbosly)
+[@VictorRosaValdez](https://github.com/VictorRosaValdez)
+[@leroy96](https://github.com/Leroy96)
 
 ## Further help
 
